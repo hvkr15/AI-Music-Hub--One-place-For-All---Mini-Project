@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Music Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-music"></i>
+                <span>MusicAI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    AI-Powered Music
+                    <span class="gradient-text">Recommendations</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover your perfect soundtrack with intelligent recommendations 
+                    powered by machine learning and real-time weather analysis
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('song-recommend')">
+                        <i class="fas fa-play"></i> Get Started
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('features')">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose MusicAI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered</h3>
+                    <p>Advanced machine learning algorithms analyze song features and lyrics to provide accurate recommendations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Weather-Based</h3>
+                    <p>Get music suggestions that match the current weather and mood of your location</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Personalized</h3>
+                    <p>Tailored recommendations based on your favorite songs and listening preferences</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Real-Time</h3>
+                    <p>Instant recommendations with lightning-fast processing powered by cosine similarity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Song Recommendation Section -->
+    <section class="recommendation-section" id="song-recommend">
+        <div class="container">
+            <h2 class="section-title">Song-Based Recommendations</h2>
+            <div class="recommendation-card glass-card">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="song-search" placeholder="Search for a song..." autocomplete="off">
+                    </div>
+                    <div class="search-results" id="search-results"></div>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="getRecommendations()">
+                    <i class="fas fa-magic"></i> Get Recommendations
+                </button>
+                
+                <div id="song-recommendations" class="recommendations-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Recommendation Section -->
+    <section class="weather-section">
+        <div class="container">
+            <h2 class="section-title">Weather-Based Recommendations</h2>
+            <div class="weather-card glass-card">
+                <p class="weather-description">
+                    Let us detect your location and current weather to suggest the perfect playlist for the moment
+                </p>
+                <button class="btn btn-primary btn-large" onclick="getWeatherRecommendations()">
+                    <i class="fas fa-cloud-sun"></i> Discover Weather Music
+                </button>
+                
+                <div id="weather-info" class="weather-info"></div>
+                <div id="weather-recommendations" class="recommendations-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About This Project</h2>
+            <div class="about-content glass-card">
+                <div class="about-text">
+                    <h3>AI-Powered Music Discovery</h3>
+                    <p>
+                        This project combines cutting-edge machine learning with real-world data to create 
+                        a unique music recommendation experience. Using TF-IDF (Term Frequency-Inverse Document Frequency) 
+                        and cosine similarity algorithms, we analyze song lyrics, genres, and musical features to find 
+                        songs that match your taste.
+                    </p>
+                    <p>
+                        Our standout feature is weather-based recommendations - the system detects your location, 
+                        analyzes current weather conditions, and suggests music that perfectly complements the mood 
+                        of the moment.
+                    </p>
+                    <div class="tech-stack">
+                        <h4>Technologies Used:</h4>
+                        <div class="tech-badges">
+                            <span class="badge">Python</span>
+                            <span class="badge">Flask</span>
+                            <span class="badge">Scikit-learn</span>
+                            <span class="badge">TF-IDF</span>
+                            <span class="badge">OpenWeatherMap API</span>
+                            <span class="badge">HTML5/CSS3</span>
+                            <span class="badge">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MusicAI - AI Music Recommendation System. Built with ❤️ for 5th Sem AIML Project</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

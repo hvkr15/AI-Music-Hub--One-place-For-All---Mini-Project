@@ -17,7 +17,7 @@ class WeatherMusicRecommender:
             api_key: OpenWeatherMap API key (optional, will use demo mode if not provided)
         """
         self.df = df
-        self.api_key = api_key or "YOUR_OPENWEATHERMAP_API_KEY"  # Replace with your API key
+        self.api_key = api_key or "782e98aa47114ab48de111603252110"  # OpenWeatherMap API key
         self.music_recommender = MusicRecommender(df)
         
         # Define weather to mood mappings

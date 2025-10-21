@@ -221,7 +221,13 @@ function displayWeatherInfo(weather, mood) {
                 ${weatherIcon}
             </div>
             <div class="weather-details">
-                <h3>${weather.city}</h3>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
+                    <h3 style="margin: 0;">${weather.city}</h3>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
+                    <i class="fas fa-location-arrow"></i> Your current location
+                </p>
                 <div class="weather-temp">${Math.round(weather.temperature)}°C</div>
                 <p style="color: var(--text-secondary); text-transform: capitalize;">
                     ${weather.description}
@@ -258,7 +264,7 @@ function displayWeatherRecommendations(recommendations, weather) {
                 <i class="fas fa-cloud-sun"></i> Weather-Matched Playlist
             </h3>
             <p style="color: var(--text-secondary);">
-                ${recommendations.length} songs curated for ${weather.condition.toLowerCase()} weather
+                ${recommendations.length} songs curated for ${weather.condition.toLowerCase()} weather in <strong>${weather.city}</strong>
             </p>
         </div>
         <div class="recommendations-grid">

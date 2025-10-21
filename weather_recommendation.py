@@ -82,13 +82,23 @@ class WeatherMusicRecommender:
             if response.status_code == 200:
                 data = response.json()
                 
+                # Get city and country information
+                city_name = data.get('name', 'Unknown Location')
+                country_code = data.get('sys', {}).get('country', '')
+                
+                # Create full location name
+                if country_code:
+                    full_location = f"{city_name}, {country_code}"
+                else:
+                    full_location = city_name
+                
                 weather_info = {
                     'condition': data['weather'][0]['main'],
                     'description': data['weather'][0]['description'],
                     'temperature': data['main']['temp'],
                     'feels_like': data['main']['feels_like'],
                     'humidity': data['main']['humidity'],
-                    'city': data.get('name', 'Unknown'),
+                    'city': full_location,
                     'icon': data['weather'][0]['icon']
                 }
                 
@@ -109,7 +119,7 @@ class WeatherMusicRecommender:
             'temperature': 25,
             'feels_like': 24,
             'humidity': 60,
-            'city': 'Demo City',
+            'city': 'Demo City (API Key Required)',
             'icon': '01d'
         }
     

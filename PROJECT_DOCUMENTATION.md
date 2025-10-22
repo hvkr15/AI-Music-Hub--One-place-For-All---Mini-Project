@@ -1,74 +1,172 @@
 # 🎓 Project Documentation
-## AI Music Recommendation System with Weather Integration
+## AI Music Hub - One Place for All
 
 ### 5th Semester AIML Mini Project
+
+**A Comprehensive AI-Powered Music Platform for Discovery, Creation, and Playback**
 
 ---
 
 ## 📋 Table of Contents
 1. [Project Overview](#project-overview)
-2. [Technical Architecture](#technical-architecture)
-3. [Machine Learning Implementation](#machine-learning-implementation)
-4. [Weather Integration](#weather-integration)
-5. [System Features](#system-features)
-6. [File Structure](#file-structure)
-7. [API Documentation](#api-documentation)
-8. [Testing Guide](#testing-guide)
+2. [Complete Feature Set](#complete-feature-set)
+3. [Technical Architecture](#technical-architecture)
+4. [Machine Learning Implementation](#machine-learning-implementation)
+5. [Weather Integration](#weather-integration)
+6. [Music Platform Integration](#music-platform-integration)
+7. [AI Tools Integration](#ai-tools-integration)
+8. [System Features](#system-features)
+9. [File Structure](#file-structure)
+10. [API Documentation](#api-documentation)
+11. [Testing Guide](#testing-guide)
 
 ---
 
 ## 📖 Project Overview
 
 ### Objective
-Develop an intelligent music recommendation system that combines content-based filtering using machine learning with real-time weather data to provide personalized music suggestions.
+Develop a comprehensive AI-powered music platform that combines:
+- **Intelligent Recommendations** using Machine Learning (TF-IDF + Cosine Similarity)
+- **Weather-Based Playlists** with real-time location detection
+- **Music Platform Integration** (Spotify & YouTube Music)
+- **AI Song Generation** via Suno AI
+- **AI Lyrics Creation** through Toolbaz
+
+Creating a true **"One Place for All"** music experience.
 
 ### Problem Statement
-Traditional music recommendation systems lack context awareness. This project solves this by:
-- Analyzing song content (lyrics, genre, mood)
-- Incorporating environmental factors (weather, location)
-- Providing context-aware recommendations
+Music discovery and creation are typically fragmented across multiple platforms:
+- Recommendation systems lack environmental context
+- Song creation requires multiple tools
+- Lyrics generation is separate from music creation
+- Playback requires switching between apps
 
-### Key Innovation
-**Weather-Based Music Recommendation**: A unique feature that detects user location, analyzes current weather conditions, and suggests music that matches the mood of the moment.
+### Our Solution
+**AI Music Hub** solves this by providing:
+1. Context-aware recommendations (weather + ML)
+2. Integrated music platform playback (Spotify + YouTube Music)
+3. AI-powered song and lyrics generation in one interface
+4. Seamless workflow: Discover → Create → Generate → Play
+
+### Key Innovations
+1. **Weather-Music Correlation**: Links environmental conditions to music mood
+2. **Multi-Platform Integration**: One-click playback on major streaming services
+3. **AI Creative Suite**: Integrated tools for lyrics and music generation
+4. **Complete Workflow**: End-to-end music discovery and creation pipeline
+5. **Modern UX**: Production-quality glassmorphism design
+
+---
+
+## ✨ Complete Feature Set
+
+### 1. AI-Powered Music Recommendations 🧠
+- **Content-Based Filtering** using TF-IDF vectorization
+- **Cosine Similarity** for accurate song matching
+- **Real-time Search** with autocomplete functionality
+- **Similarity Scoring** showing percentage match
+- **84-song Dataset** with comprehensive metadata
+- **1517-feature Matrix** for precise analysis
+
+### 2. Weather-Based Music Discovery 🌤️
+- **GPS Geolocation** for automatic location detection
+- **OpenWeatherMap Integration** for real-time weather data
+- **Location Display** showing city and country
+- **Weather-Mood Mapping** for 7+ weather conditions
+- **Dynamic Playlists** adapting to current weather
+- **Visual Weather Display** with icons and animations
+
+### 3. Music Platform Integration 🎵
+- **Spotify Buttons** on every recommended song
+- **YouTube Music Buttons** as alternative option
+- **One-Click Playback** opening in new tabs
+- **Smart Search** using song + artist combination
+- **Platform Icons** with brand-accurate styling
+- **Seamless Redirects** to streaming platforms
+
+### 4. AI Music Generation (Suno AI) 🎼
+- **Text-to-Music** conversion capability
+- **Professional Quality** output
+- **Multiple Genres** support
+- **Complete Song** creation (vocals + instruments)
+- **Direct Integration** via redirect button
+- **Visual Preview** with descriptive content
+
+### 5. AI Lyrics Generation (Toolbaz) ✍️
+- **Genre-Specific** lyrics creation
+- **Custom Themes** and moods
+- **Rhyme Schemes** and structure
+- **Instant Generation** capabilities
+- **Easy Access** through integrated button
+- **Creative Assistance** for songwriters
+
+### 6. Modern User Interface 🎨
+- **Glassmorphism Effects** with backdrop blur
+- **Gradient Animations** and smooth transitions
+- **Responsive Design** for all devices
+- **Dark Theme** with eye-friendly colors
+- **Intuitive Navigation** with smooth scrolling
+- **Loading States** with professional spinners
+- **Interactive Cards** with hover effects
+- **CSS Animations** for engaging UX
 
 ---
 
 ## 🏗️ Technical Architecture
 
-### System Architecture
+### Enhanced System Architecture
 ```
-┌─────────────┐         ┌──────────────┐         ┌─────────────┐
-│   Browser   │ ◄─────► │ Flask Server │ ◄─────► │  ML Engine  │
-│  (Frontend) │         │   (Backend)  │         │   (TF-IDF)  │
-└─────────────┘         └──────────────┘         └─────────────┘
-       │                       │                         │
-       │                       │                         │
-       ▼                       ▼                         ▼
-┌─────────────┐         ┌──────────────┐         ┌─────────────┐
-│ Geolocation │         │ Weather API  │         │   Dataset   │
-│     API     │         │(OpenWeather) │         │  (CSV File) │
-└─────────────┘         └──────────────┘         └─────────────┘
+┌──────────────────┐         ┌──────────────┐         ┌─────────────┐
+│     Browser      │ ◄─────► │ Flask Server │ ◄─────► │  ML Engine  │
+│   (Frontend)     │         │   (Backend)  │         │   (TF-IDF)  │
+└──────────────────┘         └──────────────┘         └─────────────┘
+        │                            │                         │
+        │                            │                         │
+        ▼                            ▼                         ▼
+┌──────────────────┐         ┌──────────────┐         ┌─────────────┐
+│  Geolocation API │         │ Weather API  │         │   Dataset   │
+│  Spotify Search  │         │(OpenWeather) │         │  (CSV File) │
+│ YouTube Music    │         └──────────────┘         └─────────────┘
+└──────────────────┘                  │
+        │                             │
+        │                             ▼
+        │                     ┌──────────────┐
+        └────────────────────►│  AI Tools    │
+                              │  • Suno AI   │
+                              │  • Toolbaz   │
+                              └──────────────┘
 ```
 
 ### Technology Stack
 
-#### Backend
-- **Python 3.12**: Core programming language
-- **Flask 3.0.0**: Web framework for API and routing
-- **Pandas 2.1.3**: Data manipulation and analysis
+#### Backend Technologies
+- **Python 3.12.2**: Core programming language
+- **Flask 3.0.0**: Lightweight web framework
+- **Pandas 2.1.3**: Data manipulation and CSV handling
 - **NumPy 1.26.2**: Numerical computations
-- **Scikit-learn 1.3.2**: Machine learning algorithms
-- **Requests 2.31.0**: HTTP requests for weather API
+- **Scikit-learn 1.3.2**: ML algorithms (TF-IDF, Cosine Similarity)
+- **Requests 2.31.0**: HTTP requests for API calls
 
-#### Frontend
-- **HTML5**: Structure and semantics
-- **CSS3**: Styling with modern effects (glassmorphism, gradients)
-- **JavaScript (ES6+)**: Dynamic interactions and API calls
-- **Font Awesome**: Icon library
+#### Frontend Technologies
+- **HTML5**: Semantic structure
+- **CSS3**: Advanced styling
+  - CSS Grid and Flexbox
+  - Glassmorphism effects
+  - Custom properties (variables)
+  - Keyframe animations
+- **JavaScript (ES6+)**: Client-side logic
+  - Async/Await for API calls
+  - Geolocation API
+  - DOM manipulation
+  - Event handling
+- **Font Awesome 6.4.0**: Professional icons (including fa-spotify, fa-youtube)
 
-#### APIs
-- **OpenWeatherMap API**: Real-time weather data
-- **Geolocation API**: Browser-based location detection
+#### External APIs & Integrations
+- **OpenWeatherMap API**: Weather data (v2.5)
+- **Spotify Web**: Music streaming platform
+- **YouTube Music**: Alternative streaming service
+- **Suno AI**: AI music generation platform
+- **Toolbaz**: AI lyrics generator
+- **Browser Geolocation API**: GPS coordinates
 
 ---
 
@@ -199,104 +297,592 @@ recommendations = similarity_scores[1:n+1]
 
 ---
 
+## 🎵 Music Platform Integration
+
+### Spotify Integration
+
+#### Implementation
+Each recommended song includes a "Play on Spotify" button that:
+1. Combines song name and artist name
+2. URL-encodes the search query
+3. Opens Spotify search in a new tab
+
+```javascript
+function openSpotify(songName, artistName) {
+    const song = decodeURIComponent(songName);
+    const artist = decodeURIComponent(artistName);
+    const query = encodeURIComponent(`${song} ${artist}`);
+    const spotifyUrl = `https://open.spotify.com/search/${query}`;
+    window.open(spotifyUrl, '_blank');
+}
+```
+
+#### Button Styling
+```css
+.spotify-btn {
+    background: #1DB954;  /* Spotify brand green */
+    color: white;
+    /* Hover effects with shadow */
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+}
+```
+
+#### Features
+- ✅ Direct search integration
+- ✅ Opens in new tab (non-disruptive)
+- ✅ Brand-accurate styling
+- ✅ Responsive button design
+- ✅ Hover animations
+
+### YouTube Music Integration
+
+#### Implementation
+Similar to Spotify, with YouTube Music specific URL:
+
+```javascript
+function openYouTubeMusic(songName, artistName) {
+    const song = decodeURIComponent(songName);
+    const artist = decodeURIComponent(artistName);
+    const query = encodeURIComponent(`${song} ${artist}`);
+    const youtubeUrl = `https://music.youtube.com/search?q=${query}`;
+    window.open(youtubeUrl, '_blank');
+}
+```
+
+#### Button Styling
+```css
+.youtube-btn {
+    background: #FF0000;  /* YouTube brand red */
+    color: white;
+    /* Hover effects with shadow */
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+}
+```
+
+#### Features
+- ✅ Alternative to Spotify
+- ✅ Same seamless experience
+- ✅ YouTube brand colors
+- ✅ Identical UX pattern
+
+### Dual Platform Approach
+
+**Why Both Platforms?**
+1. **User Choice**: Different users prefer different platforms
+2. **Availability**: Songs might be on one platform but not the other
+3. **Regional Access**: Platform availability varies by region
+4. **Feature Parity**: Consistent experience across both
+
+**Button Layout:**
+```html
+<div class="play-buttons">
+    <button class="play-btn spotify-btn">
+        <i class="fab fa-spotify"></i> Spotify
+    </button>
+    <button class="play-btn youtube-btn">
+        <i class="fab fa-youtube"></i> YouTube Music
+    </button>
+</div>
+```
+
+---
+
+## 🎼 AI Tools Integration
+
+### Suno AI - Music Generation
+
+#### Platform Overview
+**Suno AI** is a cutting-edge AI platform that generates complete songs from text descriptions.
+
+#### Capabilities
+- **Text-to-Music**: Describe your song idea in words
+- **Full Production**: Creates vocals, instruments, and production
+- **Multiple Genres**: Supports various music styles
+- **Professional Quality**: Studio-grade output
+- **Quick Generation**: Complete songs in minutes
+
+#### Integration Method
+```javascript
+// Direct redirect to Suno AI platform
+onclick="window.open('https://suno.com/', '_blank')"
+```
+
+#### User Workflow
+1. User clicks "Start Creating Music with Suno AI"
+2. Redirects to Suno AI platform
+3. User describes desired song
+4. AI generates complete track
+5. User downloads/shares creation
+
+#### Card Features
+- Feature list with checkmarks
+- Preview image (music studio)
+- Descriptive content
+- Call-to-action button
+- Gradient icon design
+
+### Toolbaz - Lyrics Generator
+
+#### Platform Overview
+**Toolbaz** provides AI-powered lyric generation with genre-specific capabilities.
+
+#### Capabilities
+- **Genre Selection**: Lyrics for any music genre
+- **Theme Customization**: Custom topics and emotions
+- **Rhyme Schemes**: Proper rhyming patterns
+- **Structure Options**: Verse/chorus organization
+- **Instant Generation**: Quick lyric creation
+
+#### Integration Method
+```javascript
+// Direct redirect to Toolbaz lyric generator
+onclick="window.open('https://toolbaz.com/writer/lyric-generator', '_blank')"
+```
+
+#### User Workflow
+1. User clicks "Generate Lyrics with AI"
+2. Redirects to Toolbaz platform
+3. Selects genre and theme
+4. Customizes mood and style
+5. Generates and exports lyrics
+
+#### Card Features
+- Purple-pink gradient icon
+- Feature checklist
+- Preview image (creative writing)
+- Styled CTA button
+- Professional presentation
+
+### Complete Creative Workflow
+
+#### The Three-Step Process
+```
+┌──────────────┐      ┌──────────────┐      ┌──────────────┐
+│   DISCOVER   │  →   │   CREATE     │  →   │   GENERATE   │
+│              │      │              │      │              │
+│ Find songs   │      │ Write lyrics │      │ Make music   │
+│ that inspire │      │ using AI     │      │ using AI     │
+│ you (ML)     │      │ (Toolbaz)    │      │ (Suno AI)    │
+└──────────────┘      └──────────────┘      └──────────────┘
+```
+
+#### Workflow Implementation
+Visual representation in UI:
+```html
+<div class="workflow-steps">
+    <div class="workflow-step">
+        <div class="workflow-number">1</div>
+        <h4>Discover Music</h4>
+        <p>Get personalized recommendations</p>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+        <div class="workflow-number">2</div>
+        <h4>Generate Lyrics</h4>
+        <p>Create original lyrics using AI</p>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+        <div class="workflow-number">3</div>
+        <h4>Create Songs</h4>
+        <p>Transform lyrics into music</p>
+    </div>
+</div>
+```
+
+#### Benefits of Integration
+- **Seamless Experience**: All tools accessible from one platform
+- **Clear Workflow**: Guided process for music creation
+- **No Context Switching**: Everything in one place
+- **Educational**: Teaches the creative process
+- **Comprehensive**: Covers entire music creation pipeline
+
+---
+
 ## ⚙️ System Features
 
 ### 1. Song-Based Recommendations
-- **Input**: Song name
-- **Process**: TF-IDF + Cosine Similarity
-- **Output**: 10 similar songs with match percentage
+- **Input**: Song name from search
+- **Process**: TF-IDF vectorization + Cosine Similarity matching
+- **Output**: 10 similar songs with similarity percentage scores
+- **Platforms**: Direct links to Spotify and YouTube Music
+- **Display**: Song cards with metadata and play buttons
 
 ### 2. Weather-Based Recommendations
-- **Input**: User location (automatic)
-- **Process**: Weather API + Mood mapping + Filtering
-- **Output**: 15 weather-appropriate songs
+- **Input**: User location (GPS coordinates via browser)
+- **Process**: 
+  - Fetch weather from OpenWeatherMap API
+  - Map weather condition to music mood
+  - Filter dataset by mood and genre
+- **Output**: 15 weather-appropriate songs with platform links
+- **Display**: Weather info + location + curated playlist
 
-### 3. Autocomplete Search
-- **Real-time search**: Debounced with 300ms delay
+### 3. Music Platform Integration
+- **Spotify**: Green button with brand icon
+- **YouTube Music**: Red button with brand icon
+- **Functionality**: One-click redirect to search results
+- **Experience**: Opens in new tab, non-disruptive
+
+### 4. AI Creation Tools
+- **Suno AI**: Complete song generation from text
+- **Toolbaz**: AI-powered lyrics creation
+- **Integration**: Direct redirect buttons with visual previews
+- **Workflow**: Visual three-step creative process
+
+### 5. Autocomplete Search
+- **Real-time**: Debounced search with 300ms delay
 - **Fuzzy matching**: Partial string matching
-- **Responsive**: Shows top 50 results
+- **Responsive**: Shows relevant results instantly
+- **Selection**: Click to select from dropdown
 
-### 4. Responsive Design
-- **Desktop**: Full-width layout with cards
-- **Tablet**: Adaptive grid layout
+### 6. Responsive Design
+- **Desktop**: Full-width multi-column grid layout
+- **Tablet**: Adaptive 2-column grid
 - **Mobile**: Single-column stacked view
+- **Navigation**: Responsive menu with smooth scrolling
 
-### 5. Visual Effects
-- **Glassmorphism**: Frosted glass effect on cards
-- **Gradient backgrounds**: Modern color schemes
-- **Smooth animations**: Fade-in, slide-up effects
-- **Interactive hover**: Scale transforms on cards
+### 7. Visual Effects & UI
+- **Glassmorphism**: Frosted glass effect with backdrop-filter
+- **Gradient backgrounds**: Multi-color animated gradients
+- **Smooth animations**: Fade-in, slide-up, scale effects
+- **Interactive hover**: Transform and shadow effects on cards
+- **Loading states**: Professional loading spinner
+- **Icons**: Font Awesome 6.4.0 for all icons
 
 ---
 
 ## 📁 File Structure
 
 ```
-Mini Project 5th sem/
+AI Music Hub - Mini Project/
 │
-├── app.py                      # Main Flask application
-│   ├── Routes: /, /recommend, /weather-recommend
-│   ├── Data loading and initialization
-│   └── Error handling
+├── app.py                          # Main Flask application (Entry point)
+│   ├── Routes: /, /recommend, /weather-recommend, /search-songs
+│   ├── Data loading and ML model initialization
+│   ├── Error handling and logging
+│   └── Server configuration (port 5000, debug mode)
 │
-├── recommendation.py           # ML recommendation engine
+├── recommendation.py               # ML recommendation engine
 │   ├── Class: MusicRecommender
-│   ├── TF-IDF vectorization
-│   ├── Cosine similarity computation
-│   └── Recommendation generation
+│   ├── TF-IDF vectorization (5000 features, bigrams)
+│   ├── Cosine similarity matrix computation (84×84)
+│   ├── Recommendation generation with scoring
+│   └── Data preprocessing and cleaning
 │
-├── weather_recommendation.py   # Weather-based system
+├── weather_recommendation.py       # Weather-based recommendation system
 │   ├── Class: WeatherMusicRecommender
-│   ├── Weather API integration
-│   ├── Mood mapping logic
-│   └── Filtering algorithms
+│   ├── OpenWeatherMap API integration
+│   ├── Weather-to-mood mapping logic
+│   ├── Location and city name extraction
+│   ├── Filtering algorithms by mood/genre
+│   └── API key configuration
 │
 ├── data/
-│   └── music_data.csv         # Dataset (84 songs)
+│   └── music_data.csv              # Dataset (84 songs)
 │       ├── Columns: song, artist, genre, mood, lyrics
-│       └── Sample: pop, rock, jazz, classical songs
+│       ├── Feature matrix: 84 × 1517
+│       └── Genres: Pop, Rock, Jazz, Hip-Hop, Classical, etc.
 │
 ├── templates/
-│   └── index.html             # Main HTML template
-│       ├── Hero section
-│       ├── Features showcase
-│       ├── Search interface
-│       └── Results display
+│   └── index.html                  # Main HTML template (400+ lines)
+│       ├── Hero section with tagline
+│       ├── Features grid (6 features)
+│       ├── Song recommendation interface
+│       ├── Weather recommendation section
+│       ├── AI Tools section (Suno AI + Toolbaz)
+│       ├── Creative workflow visualization
+│       ├── About section
+│       └── Footer with social links
 │
 ├── static/
 │   ├── css/
-│   │   └── style.css          # Styling (1200+ lines)
-│   │       ├── CSS variables
+│   │   └── style.css               # Complete styling (900+ lines)
+│   │       ├── CSS custom properties (variables)
 │   │       ├── Glassmorphism effects
-│   │       ├── Animations
-│   │       └── Responsive design
+│   │       ├── Gradient animations
+│   │       ├── Button styles (Spotify, YouTube, AI Tools)
+│   │       ├── Responsive media queries
+│   │       ├── Workflow step styling
+│   │       └── Card hover effects
 │   │
 │   └── js/
-│       └── script.js          # Frontend logic (400+ lines)
-│           ├── Search functionality
-│           ├── API calls
-│           ├── DOM manipulation
-│           └── Event handlers
+│       └── script.js               # Frontend JavaScript (440+ lines)
+│           ├── Song search with debouncing
+│           ├── Recommendation API calls
+│           ├── Weather detection (Geolocation API)
+│           ├── Display functions for results
+│           ├── Spotify integration (openSpotify)
+│           ├── YouTube Music integration (openYouTubeMusic)
+│           ├── Card animations
+│           ├── Navigation active states
+│           └── DOM manipulation
 │
-├── requirements.txt           # Python dependencies
-├── README.md                  # User documentation
-├── QUICKSTART.md             # Quick setup guide
-├── PROJECT_DOCUMENTATION.md  # This file
-├── .gitignore               # Git ignore rules
-├── config.example.py        # Configuration template
-└── start.bat                # Windows launcher
+├── requirements.txt                # Python dependencies
+│   ├── Flask==3.0.0
+│   ├── pandas==2.1.3
+│   ├── numpy==1.26.2
+│   ├── scikit-learn==1.3.2
+│   └── requests==2.31.0
+│
+├── README.md                       # Comprehensive user documentation
+├── PROJECT_DOCUMENTATION.md        # This file (technical documentation)
+├── .gitignore                      # Git ignore patterns
+└── .git/                          # Git version control
 ```
 
 ---
 
 ## 🔌 API Documentation
 
-### 1. GET /
-**Description**: Serve main HTML page
+### Backend Flask Routes
 
-**Response**: HTML page
+#### 1. GET /
+**Description**: Serve the main application page
+
+**Request**: None
+
+**Response**: 
+- Type: HTML
+- Content: Rendered `index.html` template
+
+**Example**:
+```bash
+GET http://127.0.0.1:5000/
+```
 
 ---
+
+#### 2. POST /recommend
+**Description**: Get song-based recommendations using ML
+
+**Request Body** (JSON):
+```json
+{
+    "song_name": "Bohemian Rhapsody"
+}
+```
+
+**Response** (JSON):
+```json
+{
+    "success": true,
+    "recommendations": [
+        {
+            "song": "Stairway to Heaven",
+            "artist": "Led Zeppelin",
+            "genre": "rock",
+            "mood": "epic",
+            "similarity_score": 0.87
+        },
+        // ... more recommendations
+    ]
+}
+```
+
+**Error Response**:
+```json
+{
+    "success": false,
+    "error": "Song not found in database"
+}
+```
+
+**Status Codes**:
+- 200: Success
+- 400: Bad request (missing song_name)
+- 404: Song not found
+
+---
+
+#### 3. POST /weather-recommend
+**Description**: Get weather-based music recommendations
+
+**Request Body** (JSON):
+```json
+{
+    "latitude": 40.7128,
+    "longitude": -74.0060
+}
+```
+
+**Response** (JSON):
+```json
+{
+    "success": true,
+    "weather": {
+        "temperature": 22.5,
+        "feels_like": 21.0,
+        "humidity": 65,
+        "condition": "Clear",
+        "description": "clear sky",
+        "city": "New York",
+        "country": "US"
+    },
+    "mood": "happy",
+    "recommendations": [
+        {
+            "song": "Happy",
+            "artist": "Pharrell Williams",
+            "genre": "pop",
+            "mood": "happy"
+        },
+        // ... more recommendations
+    ]
+}
+```
+
+**Error Response**:
+```json
+{
+    "success": false,
+    "error": "Weather API Error: 401 (Unauthorized)"
+}
+```
+
+**Status Codes**:
+- 200: Success
+- 400: Missing coordinates
+- 401: Invalid API key
+- 500: Weather API error
+
+---
+
+#### 4. GET /search-songs
+**Description**: Search for songs (autocomplete functionality)
+
+**Query Parameters**:
+- `q`: Search query string
+
+**Request Example**:
+```bash
+GET http://127.0.0.1:5000/search-songs?q=bohemian
+```
+
+**Response** (JSON):
+```json
+{
+    "success": true,
+    "songs": [
+        "Bohemian Rhapsody - Queen",
+        "Bohemian Like You - The Dandy Warhols"
+    ]
+}
+```
+
+**Status Codes**:
+- 200: Success
+- 400: Missing query parameter
+
+---
+
+### Frontend JavaScript Functions
+
+#### Music Platform Integration
+
+**openSpotify(songName, artistName)**
+```javascript
+// Opens Spotify search for the song
+openSpotify('Bohemian Rhapsody', 'Queen')
+// Opens: https://open.spotify.com/search/Bohemian%20Rhapsody%20Queen
+```
+
+**openYouTubeMusic(songName, artistName)**
+```javascript
+// Opens YouTube Music search
+openYouTubeMusic('Bohemian Rhapsody', 'Queen')
+// Opens: https://music.youtube.com/search?q=Bohemian%20Rhapsody%20Queen
+```
+
+#### Recommendation Functions
+
+**getRecommendations()**
+```javascript
+// Fetches song-based recommendations
+// Calls POST /recommend
+// Displays results in #song-recommendations
+```
+
+**getWeatherRecommendations()**
+```javascript
+// 1. Gets user location via Geolocation API
+// 2. Calls POST /weather-recommend
+// 3. Displays weather info and playlist
+```
+
+**searchSongs(query)**
+```javascript
+// Debounced search function
+// Calls GET /search-songs?q={query}
+// Updates autocomplete dropdown
+```
+
+---
+
+### External APIs
+
+#### OpenWeatherMap API
+
+**Endpoint**: `https://api.openweathermap.org/data/2.5/weather`
+
+**Parameters**:
+```python
+{
+    'lat': 40.7128,
+    'lon': -74.0060,
+    'appid': 'your_api_key',
+    'units': 'metric'
+}
+```
+
+**Response Fields Used**:
+- `main.temp`: Temperature in Celsius
+- `main.feels_like`: Feels like temperature
+- `main.humidity`: Humidity percentage
+- `weather[0].main`: Main condition (Clear, Rain, etc.)
+- `weather[0].description`: Detailed description
+- `name`: City name
+- `sys.country`: Country code
+
+**Rate Limits**:
+- Free tier: 1,000 calls/day
+- 60 calls/minute
+
+---
+
+### Data Flow Diagrams
+
+#### Song Recommendation Flow
+```
+User Input → Search Box → Autocomplete Dropdown → Selection
+    ↓
+POST /recommend → MusicRecommender.get_recommendations()
+    ↓
+TF-IDF Matrix → Cosine Similarity → Top 10 Songs
+    ↓
+Response JSON → Display Cards → Spotify/YouTube Buttons
+```
+
+#### Weather Recommendation Flow
+```
+Button Click → Geolocation API → GPS Coordinates
+    ↓
+POST /weather-recommend → OpenWeatherMap API
+    ↓
+Weather Data → Mood Mapping → Filter Songs
+    ↓
+Response JSON → Display Weather Info + Playlist
+```
+
+#### Music Playback Flow
+```
+Song Card → Click Spotify/YouTube Button
+    ↓
+openSpotify() or openYouTubeMusic()
+    ↓
+Encode Query → Build URL → window.open()
+    ↓
+Open Platform in New Tab → Search Results
+```
 
 ### 2. POST /recommend
 **Description**: Get song-based recommendations

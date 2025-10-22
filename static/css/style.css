@@ -637,6 +637,163 @@ section {
 }
 
 /* ===================================
+   AI Tools Section
+   =================================== */
+.ai-tools-section {
+    background: var(--bg-dark);
+    padding: 5rem 0;
+}
+
+.ai-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.ai-tool-card {
+    padding: 2.5rem;
+    transition: var(--transition);
+}
+
+.ai-tool-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ai-tool-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.ai-tool-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.ai-tool-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.ai-tool-features {
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.ai-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.ai-feature-item i {
+    color: var(--success);
+    font-size: 1rem;
+}
+
+.ai-tool-preview {
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.ai-tool-preview img {
+    transition: var(--transition);
+}
+
+.ai-tool-card:hover .ai-tool-preview img {
+    transform: scale(1.05);
+}
+
+/* Workflow Section */
+.workflow-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.workflow-step {
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+}
+
+.workflow-step:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.workflow-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1.125rem;
+}
+
+.workflow-icon {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    color: var(--primary-color);
+}
+
+.workflow-step h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.workflow-step p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.workflow-arrow {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+/* ===================================
    About Section
    =================================== */
 .about-content {
@@ -779,6 +936,7 @@ section {
 
     .nav-links {
         gap: 1rem;
+        font-size: 0.9rem;
     }
 
     .features-grid {
@@ -794,6 +952,23 @@ section {
     }
 
     .weather-display {
+        flex-direction: column;
+    }
+
+    .ai-tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-tool-features {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-arrow {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+    }
+
+    .workflow-steps {
         flex-direction: column;
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Music Recommendation System</title>
+    <title>AI Music - One Place for All | Recommendations, Lyrics & Song Generation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -22,11 +22,12 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-music"></i>
-                <span>MusicAI</span>
+                <span>AI Music Hub</span>
             </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#features" class="nav-link">Features</a>
+                <a href="#ai-tools" class="nav-link">AI Tools</a>
                 <a href="#about" class="nav-link">About</a>
             </div>
         </div>
@@ -37,19 +38,19 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    AI-Powered Music
-                    <span class="gradient-text">Recommendations</span>
+                    AI Music Hub
+                    <span class="gradient-text">One Place for All</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Discover your perfect soundtrack with intelligent recommendations 
-                    powered by machine learning and real-time weather analysis
+                    Your complete AI-powered music platform - Get personalized recommendations, 
+                    generate original songs with Suno AI, and create stunning lyrics with AI
                 </p>
                 <div class="cta-buttons">
                     <button class="btn btn-primary" onclick="scrollToSection('song-recommend')">
                         <i class="fas fa-play"></i> Get Started
                     </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('features')">
-                        <i class="fas fa-info-circle"></i> Learn More
+                    <button class="btn btn-secondary" onclick="scrollToSection('ai-tools')">
+                        <i class="fas fa-wand-magic-sparkles"></i> AI Tools
                     </button>
                 </div>
             </div>
@@ -59,13 +60,13 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">Why Choose MusicAI?</h2>
+            <h2 class="section-title">Why Choose AI Music Hub?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3>AI-Powered</h3>
+                    <h3>AI Recommendations</h3>
                     <p>Advanced machine learning algorithms analyze song features and lyrics to provide accurate recommendations</p>
                 </div>
                 <div class="feature-card">
@@ -77,17 +78,31 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-wand-magic-sparkles"></i>
                     </div>
-                    <h3>Personalized</h3>
-                    <p>Tailored recommendations based on your favorite songs and listening preferences</p>
+                    <h3>Song Generation</h3>
+                    <p>Create original music tracks with Suno AI - from idea to complete song in minutes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>Lyrics Creation</h3>
+                    <p>Generate creative and meaningful lyrics using AI-powered lyric generator</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>All-in-One</h3>
+                    <p>Everything you need for music - discover, create, and enjoy all in one place</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h3>Real-Time</h3>
-                    <p>Instant recommendations with lightning-fast processing powered by cosine similarity</p>
+                    <h3>Lightning Fast</h3>
+                    <p>Instant recommendations and seamless integration with AI music tools</p>
                 </div>
             </div>
         </div>
@@ -132,23 +147,146 @@
         </div>
     </section>
 
+    <!-- AI Tools Section -->
+    <section class="ai-tools-section" id="ai-tools">
+        <div class="container">
+            <h2 class="section-title">AI Music Creation Tools</h2>
+            <p style="text-align: center; color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Unleash your creativity with cutting-edge AI tools. Create original music or generate captivating lyrics - 
+                all powered by advanced artificial intelligence.
+            </p>
+            
+            <div class="ai-tools-grid">
+                <!-- Suno AI - Music Generation -->
+                <div class="ai-tool-card glass-card">
+                    <div class="ai-tool-icon">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <h3>Create Your Own Music</h3>
+                    <p class="ai-tool-description">
+                        Transform your ideas into professional-quality songs with <strong>Suno AI</strong>. 
+                        Simply describe your vision, and watch as AI composes, arranges, and produces 
+                        complete tracks with vocals, instruments, and production - all in minutes!
+                    </p>
+                    <div class="ai-tool-features">
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Text-to-Music Generation</span>
+                        </div>
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional Quality Output</span>
+                        </div>
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multiple Genres & Styles</span>
+                        </div>
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Instant Song Creation</span>
+                        </div>
+                    </div>
+                    <div class="ai-tool-preview">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&h=400&fit=crop" alt="AI Music Generation" style="width: 100%; border-radius: 12px; margin: 1.5rem 0;">
+                    </div>
+                    <button class="btn btn-primary btn-large" onclick="window.open('https://suno.com/', '_blank')" style="width: 100%;">
+                        <i class="fas fa-music"></i> Start Creating Music with Suno AI
+                    </button>
+                </div>
+
+                <!-- Toolbaz - Lyrics Generation -->
+                <div class="ai-tool-card glass-card">
+                    <div class="ai-tool-icon" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3>Generate AI Lyrics</h3>
+                    <p class="ai-tool-description">
+                        Craft compelling lyrics effortlessly with <strong>Toolbaz AI Lyric Generator</strong>. 
+                        Whether you're a seasoned songwriter or just starting out, get creative, meaningful, 
+                        and genre-specific lyrics tailored to your theme and style.
+                    </p>
+                    <div class="ai-tool-features">
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multiple Music Genres</span>
+                        </div>
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Custom Themes & Moods</span>
+                        </div>
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Rhyme & Structure Options</span>
+                        </div>
+                        <div class="ai-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Instant Lyric Creation</span>
+                        </div>
+                    </div>
+                    <div class="ai-tool-preview">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="AI Lyrics Generation" style="width: 100%; border-radius: 12px; margin: 1.5rem 0;">
+                    </div>
+                    <button class="btn btn-primary btn-large" onclick="window.open('https://toolbaz.com/writer/lyric-generator', '_blank')" style="width: 100%; background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                        <i class="fas fa-pen-fancy"></i> Generate Lyrics with AI
+                    </button>
+                </div>
+            </div>
+
+            <!-- Workflow Section -->
+            <div class="workflow-section" style="margin-top: 4rem;">
+                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--text-primary);">
+                    <i class="fas fa-lightbulb"></i> Your Creative Workflow
+                </h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="workflow-number">1</div>
+                        <div class="workflow-icon"><i class="fas fa-search"></i></div>
+                        <h4>Discover Music</h4>
+                        <p>Get personalized recommendations based on your taste or current weather</p>
+                    </div>
+                    <div class="workflow-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="workflow-step">
+                        <div class="workflow-number">2</div>
+                        <div class="workflow-icon"><i class="fas fa-pen-fancy"></i></div>
+                        <h4>Generate Lyrics</h4>
+                        <p>Create original lyrics using AI for your next masterpiece</p>
+                    </div>
+                    <div class="workflow-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="workflow-step">
+                        <div class="workflow-number">3</div>
+                        <div class="workflow-icon"><i class="fas fa-music"></i></div>
+                        <h4>Create Songs</h4>
+                        <p>Transform your lyrics into complete songs with Suno AI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container">
             <h2 class="section-title">About This Project</h2>
             <div class="about-content glass-card">
                 <div class="about-text">
-                    <h3>AI-Powered Music Discovery</h3>
+                    <h3>AI Music Hub - One Place for All Your Music Needs</h3>
                     <p>
-                        This project combines cutting-edge machine learning with real-world data to create 
-                        a unique music recommendation experience. Using TF-IDF (Term Frequency-Inverse Document Frequency) 
-                        and cosine similarity algorithms, we analyze song lyrics, genres, and musical features to find 
-                        songs that match your taste.
+                        This comprehensive AI-powered music platform combines cutting-edge machine learning with 
+                        creative AI tools to provide a complete music experience. Whether you want to discover 
+                        new songs, create original music, or generate lyrics, we've got you covered!
                     </p>
                     <p>
-                        Our standout feature is weather-based recommendations - the system detects your location, 
-                        analyzes current weather conditions, and suggests music that perfectly complements the mood 
-                        of the moment.
+                        <strong>Intelligent Recommendations:</strong> Using TF-IDF (Term Frequency-Inverse Document Frequency) 
+                        and cosine similarity algorithms, we analyze song lyrics, genres, and musical features to find 
+                        songs that perfectly match your taste.
+                    </p>
+                    <p>
+                        <strong>Weather Integration:</strong> Our standout feature detects your location, analyzes 
+                        current weather conditions, and suggests music that complements the mood of the moment.
+                    </p>
+                    <p>
+                        <strong>Creative AI Tools:</strong> Integrated with Suno AI for music generation and 
+                        Toolbaz for lyrics creation, making this your one-stop destination for all music-related needs.
                     </p>
                     <div class="tech-stack">
                         <h4>Technologies Used:</h4>
@@ -158,6 +296,8 @@
                             <span class="badge">Scikit-learn</span>
                             <span class="badge">TF-IDF</span>
                             <span class="badge">OpenWeatherMap API</span>
+                            <span class="badge">Suno AI</span>
+                            <span class="badge">Toolbaz AI</span>
                             <span class="badge">HTML5/CSS3</span>
                             <span class="badge">JavaScript</span>
                         </div>
@@ -170,9 +310,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 MusicAI - AI Music Recommendation System. Built with ❤️ for 5th Sem AIML Project</p>
+            <p>&copy; 2025 AI Music Hub - One Place for All. Built with ❤️ for 5th Sem AIML Project</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/hvkr15/AI-and-weather-Based-Music-Recommendation-System---Mini-Project" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-linkedin"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
             </div>

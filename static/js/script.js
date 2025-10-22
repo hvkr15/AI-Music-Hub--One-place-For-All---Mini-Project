@@ -301,6 +301,14 @@ function createSongCard(song, index) {
                 ${mood ? `<span class="song-tag"><i class="fas fa-heart"></i> ${mood}</span>` : ''}
                 ${similarity ? `<span class="song-tag" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; border: none;"><i class="fas fa-star"></i> ${similarity}</span>` : ''}
             </div>
+            <div class="play-buttons">
+                <button class="play-btn spotify-btn" onclick="openSpotify('${encodeURIComponent(song.song)}', '${encodeURIComponent(artist)}')">
+                    <i class="fab fa-spotify"></i> Spotify
+                </button>
+                <button class="play-btn youtube-btn" onclick="openYouTubeMusic('${encodeURIComponent(song.song)}', '${encodeURIComponent(artist)}')">
+                    <i class="fab fa-youtube"></i> YouTube Music
+                </button>
+            </div>
         </div>
     `;
 }
@@ -400,3 +408,32 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 });
+
+// ===================================
+// Open Music Streaming Platforms
+// ===================================
+function openSpotify(songName, artistName) {
+    // Decode the encoded parameters
+    const song = decodeURIComponent(songName);
+    const artist = decodeURIComponent(artistName);
+    
+    // Create search query for Spotify
+    const query = encodeURIComponent(`${song} ${artist}`);
+    const spotifySearchUrl = `https://open.spotify.com/search/${query}`;
+    
+    // Open in new tab
+    window.open(spotifySearchUrl, '_blank');
+}
+
+function openYouTubeMusic(songName, artistName) {
+    // Decode the encoded parameters
+    const song = decodeURIComponent(songName);
+    const artist = decodeURIComponent(artistName);
+    
+    // Create search query for YouTube Music
+    const query = encodeURIComponent(`${song} ${artist}`);
+    const youtubeSearchUrl = `https://music.youtube.com/search?q=${query}`;
+    
+    // Open in new tab
+    window.open(youtubeSearchUrl, '_blank');
+}

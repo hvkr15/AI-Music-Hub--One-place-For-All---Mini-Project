@@ -519,6 +519,56 @@ section {
 }
 
 /* ===================================
+   Play Buttons (Spotify & YouTube Music)
+   =================================== */
+.play-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.play-btn {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.spotify-btn {
+    background: #1DB954;
+    color: white;
+}
+
+.spotify-btn:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+}
+
+.youtube-btn {
+    background: #FF0000;
+    color: white;
+}
+
+.youtube-btn:hover {
+    background: #ff1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+}
+
+.play-btn i {
+    font-size: 1rem;
+}
+
+/* ===================================
    Weather Section
    =================================== */
 .weather-info {

@@ -27,11 +27,16 @@ def load_data():
             use_spotify_dataset = True
             print("✓ Spotify dataset loaded successfully!")
             
-            # For weather recommendations, we'll use a sample or create genre mapping
-            # Since Spotify dataset doesn't have genre/mood, we'll skip weather recommendations
-            # or implement a fallback
-            print("ℹ️  Weather-based recommendations using Spotify dataset (limited features)")
-            weather_recommender = None  # Disable for now as Spotify dataset lacks mood/genre
+            # For weather recommendations, use original dataset if available
+            # Otherwise, create a simple weather-based recommender with Spotify data
+            if os.path.exists('data/music_data.csv'):
+                print("📊 Loading original dataset for weather recommendations...")
+                weather_df = pd.read_csv('data/music_data.csv')
+                weather_recommender = WeatherMusicRecommender(weather_df)
+                print("✓ Weather recommender initialized with original dataset!")
+            else:
+                print("ℹ️  Weather-based recommendations disabled (original dataset not found)")
+                weather_recommender = None
             
             return True
             
@@ -107,14 +112,20 @@ def weather_recommend():
         longitude = data.get('longitude')
         
         if not weather_recommender:
-            return jsonify({'error': 'System not initialized. Please check dataset.'}), 500
+            return jsonify({
+                'success': False,
+                'error': 'Weather-based recommendations are currently unavailable. Please ensure the original music dataset (music_data.csv) is present.'
+            }), 503
         
         result = weather_recommender.get_weather_based_recommendations(
             latitude, longitude, n_recommendations=15
         )
         
         if result is None:
-            return jsonify({'error': 'Unable to fetch weather data'}), 500
+            return jsonify({
+                'success': False,
+                'error': 'Unable to fetch weather data. Please check your internet connection or try again later.'
+            }), 500
         
         return jsonify({
             'success': True,
@@ -123,7 +134,12 @@ def weather_recommend():
             'recommendations': result['recommendations'].to_dict('records')
         })
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'success': False,
+            'error': f'An error occurred: {str(e)}'
+        }), 500
 
 @app.route('/get-songs', methods=['GET'])
 def get_songs():

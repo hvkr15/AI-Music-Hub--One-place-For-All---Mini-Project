@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Lyrics Generator | AI Music Hub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-music"></i>
+                <span>AI Music Hub</span>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/lyrics-generator" class="nav-link active">Lyrics Generator</a>
+                <a href="/song-creator" class="nav-link">Song Creator</a>
+                <a href="/#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="lyrics-generator-page" style="padding-top: 100px; min-height: 100vh;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Page Header -->
+                    <div class="text-center mb-5">
+                        <div class="ai-tool-icon mx-auto mb-4" style="width: 120px; height: 120px; background: linear-gradient(135deg, #ec4899, #8b5cf6); font-size: 3.5rem;">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h1 class="display-4 fw-bold mb-3" style="color: var(--text-primary);">
+                            AI Lyrics Generator
+                        </h1>
+                        <p class="lead text-secondary">
+                            Create compelling, genre-specific lyrics instantly with our AI-powered generator.
+                            Choose your theme, genre, and mood to craft the perfect song.
+                        </p>
+                    </div>
+
+                    <!-- Lyrics Generation Card -->
+                    <div class="card shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
+                        <div class="card-body p-5">
+                            <!-- Input Form -->
+                            <form id="lyricsForm">
+                                <div class="mb-4">
+                                    <label for="lyricsTheme" class="form-label fs-5 fw-semibold">
+                                        <i class="fas fa-lightbulb text-warning"></i> Song Theme/Topic
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="lyricsTheme" 
+                                           placeholder="e.g., Love, Freedom, Dreams, Adventure" required>
+                                    <div class="form-text">What is your song about?</div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lyricsGenre" class="form-label fs-5 fw-semibold">
+                                            <i class="fas fa-guitar text-danger"></i> Genre
+                                        </label>
+                                        <select class="form-select form-select-lg" id="lyricsGenre">
+                                            <option value="pop">Pop</option>
+                                            <option value="rock">Rock</option>
+                                            <option value="jazz">Jazz</option>
+                                            <option value="hip-hop">Hip-Hop</option>
+                                            <option value="country">Country</option>
+                                            <option value="classical">Classical</option>
+                                            <option value="blues">Blues</option>
+                                            <option value="reggae">Reggae</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lyricsMood" class="form-label fs-5 fw-semibold">
+                                            <i class="fas fa-heart text-danger"></i> Mood
+                                        </label>
+                                        <select class="form-select form-select-lg" id="lyricsMood">
+                                            <option value="happy">Happy</option>
+                                            <option value="sad">Sad</option>
+                                            <option value="energetic">Energetic</option>
+                                            <option value="calm">Calm</option>
+                                            <option value="romantic">Romantic</option>
+                                            <option value="melancholic">Melancholic</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-lg btn-primary" 
+                                            style="background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; padding: 1rem;">
+                                        <i class="fas fa-magic"></i> Generate Lyrics
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Loading Indicator -->
+                            <div id="loadingLyrics" class="text-center my-5" style="display: none;">
+                                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3 text-secondary">Crafting your lyrics...</p>
+                            </div>
+
+                            <!-- Lyrics Output -->
+                            <div id="lyricsOutput" class="mt-5" style="display: none;">
+                                <div class="alert alert-success d-flex align-items-center" role="alert">
+                                    <i class="fas fa-check-circle fs-4 me-3"></i>
+                                    <div>
+                                        <h5 class="alert-heading mb-0">Lyrics Generated Successfully!</h5>
+                                    </div>
+                                </div>
+
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header bg-gradient text-white" 
+                                         style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                                        <h5 class="mb-0"><i class="fas fa-music"></i> Your AI-Generated Lyrics</h5>
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <pre id="generatedLyrics" class="lyrics-text"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap">
+                                    <button class="btn btn-outline-primary btn-lg" onclick="copyLyrics()">
+                                        <i class="fas fa-copy"></i> Copy to Clipboard
+                                    </button>
+                                    <button class="btn btn-outline-success btn-lg" onclick="downloadLyrics()">
+                                        <i class="fas fa-download"></i> Download as TXT
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-lg" onclick="generateNewLyrics()">
+                                        <i class="fas fa-redo"></i> Generate New
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="row mt-5">
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h5>Instant Generation</h5>
+                                <p class="text-muted">Get lyrics in seconds</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h5>Multiple Genres</h5>
+                                <p class="text-muted">8+ music genres</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h5>Custom Moods</h5>
+                                <p class="text-muted">Tailored emotions</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3">
+                                    <i class="fas fa-file-export"></i>
+                                </div>
+                                <h5>Easy Export</h5>
+                                <p class="text-muted">Copy or download</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/lyrics.js') }}"></script>
+</body>
+</html>

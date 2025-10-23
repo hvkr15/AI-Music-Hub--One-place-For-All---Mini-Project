@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Song Creator | AI Music Hub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-music"></i>
+                <span>AI Music Hub</span>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/lyrics-generator" class="nav-link">Lyrics Generator</a>
+                <a href="/song-creator" class="nav-link active">Song Creator</a>
+                <a href="/#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="song-creator-page" style="padding-top: 100px; min-height: 100vh;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Page Header -->
+                    <div class="text-center mb-5">
+                        <div class="ai-tool-icon mx-auto mb-4" style="width: 120px; height: 120px; background: linear-gradient(135deg, #06b6d4, #3b82f6); font-size: 3.5rem;">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h1 class="display-4 fw-bold mb-3" style="color: var(--text-primary);">
+                            AI Song Creator
+                        </h1>
+                        <p class="lead text-secondary">
+                            Transform your ideas into complete songs with Suno AI. Generate professional-quality
+                            music with vocals, instruments, and production—all powered by artificial intelligence.
+                        </p>
+                    </div>
+
+                    <!-- Suno AI Info Card -->
+                    <div class="card shadow-lg border-0 mb-5" style="border-radius: 20px; overflow: hidden;">
+                        <div class="card-body p-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-3 text-center mb-4 mb-md-0">
+                                    <img src="https://cdn.prod.website-files.com/6502af467b2a8c4792c0d2b2/66f5a7a4d0a6a2c8894bd99b_suno%20icon%20black.png" 
+                                         alt="Suno AI Logo" class="img-fluid" style="max-width: 150px; border-radius: 20px;">
+                                </div>
+                                <div class="col-md-9">
+                                    <h2 class="mb-3" style="color: var(--text-primary);">
+                                        <i class="fas fa-star text-warning"></i> Powered by Suno AI
+                                    </h2>
+                                    <p class="lead mb-4">
+                                        Suno AI is the world's leading AI music generation platform, capable of creating
+                                        complete songs with professional vocals, instrumentation, and mixing.
+                                    </p>
+                                    <div class="d-flex gap-4 flex-wrap">
+                                        <div>
+                                            <h5><i class="fas fa-microphone text-primary"></i> AI Vocals</h5>
+                                            <p class="text-muted mb-0">Realistic singing voices</p>
+                                        </div>
+                                        <div>
+                                            <h5><i class="fas fa-drum text-success"></i> Full Production</h5>
+                                            <p class="text-muted mb-0">Complete instrumentation</p>
+                                        </div>
+                                        <div>
+                                            <h5><i class="fas fa-sliders text-danger"></i> Custom Styles</h5>
+                                            <p class="text-muted mb-0">Any genre, any mood</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- How It Works -->
+                    <div class="card shadow-lg border-0 mb-5" style="border-radius: 20px;">
+                        <div class="card-header bg-gradient text-white py-4" 
+                             style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                            <h3 class="mb-0"><i class="fas fa-list-ol"></i> How to Create Your Song</h3>
+                        </div>
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="d-flex">
+                                        <div class="step-number me-4">1</div>
+                                        <div>
+                                            <h5 class="fw-bold">Visit Suno AI</h5>
+                                            <p class="text-muted">Click the button below to open Suno AI's platform</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="d-flex">
+                                        <div class="step-number me-4">2</div>
+                                        <div>
+                                            <h5 class="fw-bold">Describe Your Song</h5>
+                                            <p class="text-muted">Enter your song concept, genre, and style preferences</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="d-flex">
+                                        <div class="step-number me-4">3</div>
+                                        <div>
+                                            <h5 class="fw-bold">Add Lyrics (Optional)</h5>
+                                            <p class="text-muted">Provide your own lyrics or let AI generate them</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="d-flex">
+                                        <div class="step-number me-4">4</div>
+                                        <div>
+                                            <h5 class="fw-bold">Generate & Download</h5>
+                                            <p class="text-muted">Create your song and download the audio file</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="card shadow-lg border-0" style="border-radius: 20px; background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                        <div class="card-body p-5 text-center text-white">
+                            <h3 class="mb-4">Ready to Create Amazing Music?</h3>
+                            <p class="lead mb-4">
+                                Join millions of creators who are using Suno AI to bring their musical ideas to life.
+                            </p>
+                            <a href="https://suno.com" target="_blank" class="btn btn-light btn-lg px-5 py-3" 
+                               style="font-size: 1.2rem; font-weight: 600; border-radius: 15px;">
+                                <i class="fas fa-external-link-alt"></i> Launch Suno AI
+                            </a>
+                            <p class="mt-3 mb-0" style="font-size: 0.9rem; opacity: 0.9;">
+                                <i class="fas fa-info-circle"></i> Opens in new tab - Free tier available
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Features Grid -->
+                    <div class="row mt-5">
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm text-center" style="border-radius: 15px;">
+                                <div class="card-body p-4">
+                                    <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <h5 class="fw-bold">Fast Generation</h5>
+                                    <p class="text-muted">Complete songs in minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm text-center" style="border-radius: 15px;">
+                                <div class="card-body p-4">
+                                    <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                                        <i class="fas fa-music"></i>
+                                    </div>
+                                    <h5 class="fw-bold">All Genres</h5>
+                                    <p class="text-muted">Pop to classical and beyond</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm text-center" style="border-radius: 15px;">
+                                <div class="card-body p-4">
+                                    <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h5 class="fw-bold">Pro Quality</h5>
+                                    <p class="text-muted">Studio-grade production</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm text-center" style="border-radius: 15px;">
+                                <div class="card-body p-4">
+                                    <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                    <h5 class="fw-bold">Export Ready</h5>
+                                    <p class="text-muted">Download MP3 files</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div class="card border-0 shadow-sm mt-4" style="border-radius: 20px; background: #f8fafc;">
+                        <div class="card-body p-5">
+                            <h4 class="mb-4"><i class="fas fa-lightbulb text-warning"></i> Pro Tips for Better Results</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Be specific about genre and mood</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Use descriptive language in prompts</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Try multiple generations for variety</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Combine our Lyrics Generator with Suno</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Experiment with different styles</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Save and organize your creations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integration Suggestion -->
+                    <div class="text-center mt-5 p-4 bg-light rounded-4">
+                        <p class="lead mb-3">
+                            <i class="fas fa-magic text-primary"></i> 
+                            <strong>Tip:</strong> First generate lyrics using our 
+                            <a href="/lyrics-generator" class="text-decoration-none fw-bold">Lyrics Generator</a>,
+                            then paste them into Suno AI for the perfect custom song!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -34,6 +34,16 @@ def home():
     """Home page route"""
     return render_template('index.html')
 
+@app.route('/lyrics-generator')
+def lyrics_generator():
+    """Lyrics Generator page route"""
+    return render_template('lyrics_generator.html')
+
+@app.route('/song-creator')
+def song_creator():
+    """Song Creator page route"""
+    return render_template('song_creator.html')
+
 @app.route('/recommend', methods=['POST'])
 def recommend():
     """Get music recommendations based on selected song"""

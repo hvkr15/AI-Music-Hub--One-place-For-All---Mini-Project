@@ -135,18 +135,21 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: var(--text-primary);
+    padding-right: 3rem;
 }
 
 .nav-logo i {
     color: var(--primary-color);
+    font-size: 2rem;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    margin-left: auto;
 }
 
 .nav-link {
@@ -154,6 +157,9 @@ body {
     text-decoration: none;
     transition: var(--transition);
     position: relative;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
 }
 
 .nav-link:hover,
@@ -1086,6 +1092,108 @@ section {
 .btn-outline-secondary:hover {
     background: var(--text-secondary);
     color: white;
+}
+
+/* ===========================
+   Separate AI Tool Pages Styles
+   =========================== */
+
+/* AI Tool Icon */
+.ai-tool-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Feature Icon Small */
+.feature-icon-small {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: white;
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Step Number */
+.step-number {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Active Nav Link */
+.nav-link.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Lyrics Text Output */
+.lyrics-text {
+    font-family: 'Courier New', Courier, monospace;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    border: 1px solid #e2e8f0;
+}
+
+/* Smooth Transitions */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .ai-tool-icon {
+        width: 90px !important;
+        height: 90px !important;
+        font-size: 2.5rem !important;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .lead {
+        font-size: 1.1rem;
+    }
 }
 
 .alert-success {

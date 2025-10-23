@@ -27,9 +27,9 @@
                 <span>AI Music Hub</span>
             </div>
             <div class="nav-links">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#ai-tools" class="nav-link">AI Tools</a>
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/lyrics-generator" class="nav-link">Lyrics Generator</a>
+                <a href="/song-creator" class="nav-link">Song Creator</a>
                 <a href="#about" class="nav-link">About</a>
             </div>
         </div>
@@ -158,107 +158,53 @@
                 all powered by advanced artificial intelligence.
             </p>
             
-            <div class="ai-tools-grid">
-                <!-- Suno AI - Music Generation -->
-                <div class="ai-tool-card glass-card">
-                    <div class="ai-tool-icon">
-                        <i class="fas fa-compact-disc"></i>
-                    </div>
-                    <h3>Create Your Own Music</h3>
-                    <p class="ai-tool-description">
-                        Transform your ideas into professional-quality songs with <strong>Suno AI</strong>. 
-                        Simply describe your vision, and watch as AI composes, arranges, and produces 
-                        complete tracks with vocals, instruments, and production - all in minutes!
-                    </p>
-                    <div class="ai-tool-features">
-                        <div class="ai-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Text-to-Music Generation</span>
-                        </div>
-                        <div class="ai-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Professional Quality Output</span>
-                        </div>
-                        <div class="ai-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Multiple Genres & Styles</span>
-                        </div>
-                        <div class="ai-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Instant Song Creation</span>
+            <div class="row g-4">
+                <!-- Lyrics Generator Card -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
+                        <div class="card-body p-5 text-center">
+                            <div class="ai-tool-icon mx-auto mb-4" style="width: 100px; height: 100px; background: linear-gradient(135deg, #ec4899, #8b5cf6); font-size: 3rem;">
+                                <i class="fas fa-feather-alt"></i>
+                            </div>
+                            <h3 class="mb-3" style="color: var(--text-primary); font-size: 1.8rem;">AI Lyrics Generator</h3>
+                            <p class="text-secondary mb-4" style="font-size: 1.1rem;">
+                                Craft compelling, genre-specific lyrics instantly with our AI-powered generator. 
+                                Choose your theme, genre, and mood to create the perfect lyrics.
+                            </p>
+                            <div class="d-flex flex-column gap-2 mb-4">
+                                <div><i class="fas fa-check text-success me-2"></i> Instant lyric generation</div>
+                                <div><i class="fas fa-check text-success me-2"></i> Multiple genres & moods</div>
+                                <div><i class="fas fa-check text-success me-2"></i> Copy & download options</div>
+                            </div>
+                            <a href="/lyrics-generator" class="btn btn-primary btn-lg w-100" 
+                               style="background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none;">
+                                <i class="fas fa-pen-fancy"></i> Start Generating Lyrics
+                            </a>
                         </div>
                     </div>
-                    <div class="ai-tool-preview">
-                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&h=400&fit=crop" alt="AI Music Generation" style="width: 100%; border-radius: 12px; margin: 1.5rem 0;">
-                    </div>
-                    <button class="btn btn-primary btn-large" onclick="window.open('https://suno.com/', '_blank')" style="width: 100%;">
-                        <i class="fas fa-music"></i> Start Creating Music with Suno AI
-                    </button>
                 </div>
 
-                <!-- AI Lyrics Generator - Integrated -->
-                <div class="ai-tool-card glass-card">
-                    <div class="ai-tool-icon" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
-                        <i class="fas fa-feather-alt"></i>
-                    </div>
-                    <h3>Generate AI Lyrics</h3>
-                    <p class="ai-tool-description">
-                        Craft compelling lyrics instantly with our <strong>AI Lyric Generator</strong>. 
-                        Create genre-specific, meaningful lyrics tailored to your theme and mood - all right here!
-                    </p>
-                    
-                    <!-- Lyrics Generation Form -->
-                    <div class="lyrics-form mb-4">
-                        <div class="mb-3">
-                            <label for="lyricsTheme" class="form-label">Song Theme/Topic</label>
-                            <input type="text" class="form-control" id="lyricsTheme" placeholder="e.g., Love, Freedom, Dreams">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="lyricsGenre" class="form-label">Genre</label>
-                                <select class="form-select" id="lyricsGenre">
-                                    <option value="pop">Pop</option>
-                                    <option value="rock">Rock</option>
-                                    <option value="jazz">Jazz</option>
-                                    <option value="hip-hop">Hip-Hop</option>
-                                    <option value="country">Country</option>
-                                    <option value="classical">Classical</option>
-                                </select>
+                <!-- Song Creator Card -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
+                        <div class="card-body p-5 text-center">
+                            <div class="ai-tool-icon mx-auto mb-4" style="width: 100px; height: 100px; background: linear-gradient(135deg, #06b6d4, #3b82f6); font-size: 3rem;">
+                                <i class="fas fa-wand-magic-sparkles"></i>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="lyricsMood" class="form-label">Mood</label>
-                                <select class="form-select" id="lyricsMood">
-                                    <option value="happy">Happy</option>
-                                    <option value="sad">Sad</option>
-                                    <option value="energetic">Energetic</option>
-                                    <option value="calm">Calm</option>
-                                    <option value="romantic">Romantic</option>
-                                </select>
+                            <h3 class="mb-3" style="color: var(--text-primary); font-size: 1.8rem;">AI Song Creator</h3>
+                            <p class="text-secondary mb-4" style="font-size: 1.1rem;">
+                                Transform your ideas into complete songs with Suno AI. Generate professional-quality 
+                                music with vocals, instruments, and production.
+                            </p>
+                            <div class="d-flex flex-column gap-2 mb-4">
+                                <div><i class="fas fa-check text-success me-2"></i> Full song generation</div>
+                                <div><i class="fas fa-check text-success me-2"></i> AI vocals & instruments</div>
+                                <div><i class="fas fa-check text-success me-2"></i> Professional quality</div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary btn-large w-100 mb-3" onclick="generateLyrics()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
-                        <i class="fas fa-pen-fancy"></i> Generate Lyrics
-                    </button>
-                    
-                    <!-- Lyrics Output -->
-                    <div id="lyricsOutput" class="lyrics-output" style="display: none;">
-                        <div class="alert alert-success">
-                            <h5><i class="fas fa-check-circle"></i> Lyrics Generated!</h5>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <pre id="generatedLyrics" class="lyrics-text"></pre>
-                            </div>
-                        </div>
-                        <div class="mt-3 text-center">
-                            <button class="btn btn-outline-primary" onclick="copyLyrics()">
-                                <i class="fas fa-copy"></i> Copy Lyrics
-                            </button>
-                            <button class="btn btn-outline-secondary" onclick="downloadLyrics()">
-                                <i class="fas fa-download"></i> Download
-                            </button>
+                            <a href="/song-creator" class="btn btn-primary btn-lg w-100" 
+                               style="background: linear-gradient(135deg, #06b6d4, #3b82f6); border: none;">
+                                <i class="fas fa-music"></i> Start Creating Songs
+                            </a>
                         </div>
                     </div>
                 </div>

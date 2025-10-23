@@ -44,6 +44,12 @@ def song_creator():
     """Song Creator page route"""
     return render_template('song_creator.html')
 
+@app.route('/song-generator')
+def song_generator():
+    """Song Generator page route"""
+    return render_template('song_generator.html')
+
+
 @app.route('/recommend', methods=['POST'])
 def recommend():
     """Get music recommendations based on selected song"""
@@ -137,27 +143,378 @@ def generate_lyrics():
     try:
         data = request.get_json()
         theme = data.get('theme', '')
+        language = data.get('language', 'english')
         genre = data.get('genre', 'pop')
         mood = data.get('mood', 'happy')
         
         if not theme:
             return jsonify({'error': 'Theme is required'}), 400
         
-        # Simple lyrics generation (template-based)
-        lyrics = generate_lyrics_template(theme, genre, mood)
+        # Generate lyrics with language support
+        lyrics = generate_lyrics_template(theme, genre, mood, language)
         
         return jsonify({
             'success': True,
             'lyrics': lyrics,
             'theme': theme,
             'genre': genre,
-            'mood': mood
+            'mood': mood,
+            'language': language
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-def generate_lyrics_template(theme, genre, mood):
-    """Generate lyrics using templates based on genre and mood"""
+@app.route('/generate-song', methods=['POST'])
+def generate_song():
+    """Generate AI song description based on user input"""
+    try:
+        data = request.get_json()
+        prompt = data.get('prompt', '')
+        duration = data.get('duration', 'medium')
+        tempo = data.get('tempo', 'medium')
+        vocals = data.get('vocals', 'mixed')
+        
+        if not prompt:
+            return jsonify({'error': 'Prompt is required'}), 400
+        
+        # Generate song description
+        song_description = generate_song_description(prompt, duration, tempo, vocals)
+        
+        return jsonify({
+            'success': True,
+            'song_description': song_description,
+            'prompt': prompt
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+def generate_song_description(prompt, duration, tempo, vocals):
+    """Generate detailed song description for AI music platforms"""
+    
+    # Map tempo to BPM range
+    tempo_map = {
+        'slow': '60-80 BPM',
+        'medium': '90-120 BPM',
+        'fast': '130-160 BPM'
+    }
+    
+    # Map duration to structure
+    duration_map = {
+        'short': 'Intro → Verse → Chorus → Verse → Chorus → Outro',
+        'medium': 'Intro → Verse 1 → Chorus → Verse 2 → Chorus → Bridge → Final Chorus → Outro',
+        'long': 'Intro → Verse 1 → Pre-Chorus → Chorus → Verse 2 → Pre-Chorus → Chorus → Bridge → Instrumental Break → Final Chorus → Extended Outro'
+    }
+    
+    # Analyze the prompt to extract key elements
+    prompt_lower = prompt.lower()
+    
+    # Detect genre hints
+    genre_hints = []
+    if any(word in prompt_lower for word in ['rock', 'guitar', 'drums', 'electric']):
+        genre_hints.append('Rock')
+    if any(word in prompt_lower for word in ['pop', 'catchy', 'upbeat', 'radio']):
+        genre_hints.append('Pop')
+    if any(word in prompt_lower for word in ['electronic', 'edm', 'synth', 'beat']):
+        genre_hints.append('Electronic')
+    if any(word in prompt_lower for word in ['jazz', 'saxophone', 'swing']):
+        genre_hints.append('Jazz')
+    if any(word in prompt_lower for word in ['classical', 'orchestra', 'piano']):
+        genre_hints.append('Classical')
+    if any(word in prompt_lower for word in ['hip-hop', 'rap', 'trap', 'beats']):
+        genre_hints.append('Hip-Hop')
+    
+    genre_text = ', '.join(genre_hints) if genre_hints else 'Contemporary'
+    
+    # Detect mood/emotion
+    mood_hints = []
+    if any(word in prompt_lower for word in ['happy', 'upbeat', 'cheerful', 'joyful', 'fun']):
+        mood_hints.append('uplifting and energetic')
+    if any(word in prompt_lower for word in ['sad', 'melancholic', 'emotional', 'heartbreak']):
+        mood_hints.append('emotional and introspective')
+    if any(word in prompt_lower for word in ['romantic', 'love', 'passion']):
+        mood_hints.append('romantic and tender')
+    if any(word in prompt_lower for word in ['aggressive', 'intense', 'powerful']):
+        mood_hints.append('intense and powerful')
+    if any(word in prompt_lower for word in ['calm', 'peaceful', 'relaxing', 'chill']):
+        mood_hints.append('calm and soothing')
+    
+    mood_text = ', '.join(mood_hints) if mood_hints else 'balanced and expressive'
+    
+    # Detect instruments
+    instruments = []
+    if 'guitar' in prompt_lower:
+        instruments.append('electric guitar' if 'electric' in prompt_lower else 'acoustic guitar')
+    if any(word in prompt_lower for word in ['piano', 'keys', 'keyboard']):
+        instruments.append('piano')
+    if 'drums' in prompt_lower or 'percussion' in prompt_lower:
+        instruments.append('dynamic drums and percussion')
+    if any(word in prompt_lower for word in ['synth', 'electronic']):
+        instruments.append('synthesizers')
+    if 'bass' in prompt_lower:
+        instruments.append('bass guitar')
+    if 'strings' in prompt_lower or 'violin' in prompt_lower:
+        instruments.append('string section')
+    
+    instruments_text = ', '.join(instruments) if instruments else 'varied instrumentation'
+    
+    # Build the description
+    description = f"""🎵 AI SONG DESCRIPTION
+{'=' * 60}
+
+📋 ORIGINAL PROMPT:
+{prompt}
+
+{'=' * 60}
+
+🎼 SONG SPECIFICATIONS:
+
+Genre: {genre_text}
+Mood/Emotion: {mood_text}
+Tempo: {tempo.capitalize()} ({tempo_map[tempo]})
+Duration: {duration.capitalize()}
+Vocals: {vocals.capitalize()}
+
+{'=' * 60}
+
+🎹 MUSICAL ELEMENTS:
+
+Main Instruments: {instruments_text}
+Production Style: Modern, polished production with clear mix
+Vocal Style: {'Professional studio vocals with emotion and clarity' if vocals != 'instrumental' else 'No vocals - purely instrumental'}
+
+{'=' * 60}
+
+🎭 SONG STRUCTURE:
+{duration_map[duration]}
+
+{'=' * 60}
+
+✨ DETAILED DESCRIPTION FOR AI:
+
+Create a {tempo.lower()}-tempo {genre_text.lower()} song with a {mood_text} vibe. 
+The song should feature {instruments_text.lower()} as the primary sonic elements. 
+
+{prompt}
+
+The production should be modern and radio-ready, with a focus on:
+- Clear and balanced mix
+- Dynamic arrangement that builds throughout the song
+- Professional mastering quality
+- Attention to emotional delivery and atmosphere
+
+{f"Vocal performance should be {vocals} with professional technique, clear articulation, and emotional depth appropriate to the song's theme." if vocals != 'instrumental' else "As an instrumental track, focus on melodic development and instrumental expression to convey emotion."}
+
+Target a {duration.lower()} format suitable for streaming platforms, 
+maintaining listener engagement throughout with varied sections and dynamic changes.
+
+{'=' * 60}
+
+💡 USE THIS DESCRIPTION:
+Copy the detailed description above and paste it into AI music generation 
+platforms like Suno AI, Udio, or MusicLM for best results!
+"""
+    
+    return description
+
+def generate_multilingual_lyrics(theme, genre, mood, language):
+    """Generate lyrics in different Indian languages"""
+    
+    # Language-specific templates
+    lyrics_templates = {
+        'hindi': {
+            'verse': [
+                f"दिल में है {theme} की आग",
+                f"जो जलती है हर एक राग",
+                f"{theme} के साथ है ये सफर",
+                f"हर पल में मिले नया असर"
+            ],
+            'chorus': [
+                f"ओ {theme}, तू ही है मेरी जान",
+                f"तेरे बिना अधूरी ये कहान",
+                f"{theme} से है ये प्यार",
+                f"दिल की धड़कन, जीवन का आधार"
+            ],
+            'bridge': f"जब भी लगे अंधेरा\n{theme} बने सहारा मेरा",
+            'outro': f"{theme}... {theme}...\nसदा रहे दिल में बसा"
+        },
+        'kannada': {
+            'verse': [
+                f"{theme} ನನ್ನ ಹೃದಯದಲ್ಲಿ",
+                f"ಸದಾ ನಿನ್ನ ನೆನಪಿನಲ್ಲಿ",
+                f"{theme} ನೀನು ನನ್ನ ಜೀವನ",
+                f"ಪ್ರತಿ ಕ್ಷಣ ಹೊಸ ಸಂತೋಷ"
+            ],
+            'chorus': [
+                f"ಓ {theme}, ನೀನೇ ನನ್ನ ಪ್ರಾಣ",
+                f"ನಿನ್ನ ಬಿಟ್ಟು ಇಲ್ಲ ನನಗೆ ಸ್ಥಾನ",
+                f"{theme} ಯೊಂದಿಗೆ ಪ್ರೀತಿ",
+                f"ಹೃದಯದ ಗೀತೆ, ಜೀವನದ ರೀತಿ"
+            ],
+            'bridge': f"ಕತ್ತಲು ಆವರಿಸಿದಾಗ\n{theme} ನೀನೇ ನನ್ನ ಬೆಳಕು",
+            'outro': f"{theme}... {theme}...\nಎಂದೆಂದಿಗೂ ನನ್ನೊಂದಿಗೆ"
+        },
+        'tamil': {
+            'verse': [
+                f"{theme} என் மனதில்",
+                f"நீ எப்போதும் நினைவில்",
+                f"{theme} நீயே என் வாழ்க்கை",
+                f"ஒவ்வொரு நொடியும் புதிய மகிழ்ச்சி"
+            ],
+            'chorus': [
+                f"ஓ {theme}, நீதான் என் உயிர்",
+                f"உன்னை விட்டால் எனக்கு இடமில்லை",
+                f"{theme} உடன் காதல்",
+                f"இதயத்தின் பாட்டு, வாழ்க்கையின் வழி"
+            ],
+            'bridge': f"இருள் சூழும் போது\n{theme} நீயே என் ஒளி",
+            'outro': f"{theme}... {theme}...\nஎன்றென்றும் என்னுடன்"
+        },
+        'telugu': {
+            'verse': [
+                f"{theme} నా హృదయంలో",
+                f"నీవు ఎప్పుడూ జ్ఞాపకంలో",
+                f"{theme} నువ్వే నా జీవితం",
+                f"ప్రతి క్షణం కొత్త ఆనందం"
+            ],
+            'chorus': [
+                f"ఓ {theme}, నువ్వే నా ప్రాణం",
+                f"నిన్ను లేకుండా నాకు స్థానం లేదు",
+                f"{theme} తో ప్రేమ",
+                f"హృదయపు పాట, జీవిత మార్గం"
+            ],
+            'bridge': f"చీకటి ఆవరించినప్పుడు\n{theme} నువ్వే నా వెలుగు",
+            'outro': f"{theme}... {theme}...\nఎప్పటికీ నాతో"
+        },
+        'malayalam': {
+            'verse': [
+                f"{theme} എന്റെ ഹൃദയത്തിൽ",
+                f"നീ എപ്പോഴും ഓർമ്മയിൽ",
+                f"{theme} നീയാണ് എന്റെ ജീവിതം",
+                f"ഓരോ നിമിഷവും പുതിയ സന്തോഷം"
+            ],
+            'chorus': [
+                f"ഓ {theme}, നീയാണ് എന്റെ പ്രാണൻ",
+                f"നിന്നെ കൂടാതെ എനിക്ക് സ്ഥലമില്ല",
+                f"{theme} യോടൊപ്പം സ്നേഹം",
+                f"ഹൃദയത്തിന്റെ പാട്ട്, ജീവിതത്തിന്റെ വഴി"
+            ],
+            'bridge': f"ഇരുട്ട് വരുമ്പോൾ\n{theme} നീയാണ് എന്റെ വെളിച്ചം",
+            'outro': f"{theme}... {theme}...\nഎന്നെന്നേക്കും എന്നോടൊപ്പം"
+        },
+        'marathi': {
+            'verse': [
+                f"{theme} माझ्या हृदयात",
+                f"तू नेहमी आठवणीत",
+                f"{theme} तूच माझे जीवन",
+                f"प्रत्येक क्षण नवा आनंद"
+            ],
+            'chorus': [
+                f"ओ {theme}, तूच माझा प्राण",
+                f"तुझ्याशिवाय मला स्थान नाही",
+                f"{theme} सोबत प्रेम",
+                f"हृदयाचे गीत, जीवनाचा मार्ग"
+            ],
+            'bridge': f"जेव्हा अंधार येतो\n{theme} तूच माझा प्रकाश",
+            'outro': f"{theme}... {theme}...\nसदैव माझ्यासोबत"
+        },
+        'bengali': {
+            'verse': [
+                f"{theme} আমার হৃদয়ে",
+                f"তুমি সর্বদা স্মৃতিতে",
+                f"{theme} তুমিই আমার জীবন",
+                f"প্রতি মুহূর্তে নতুন আনন্দ"
+            ],
+            'chorus': [
+                f"ও {theme}, তুমিই আমার প্রাণ",
+                f"তোমাকে ছাড়া আমার কোনো স্থান নেই",
+                f"{theme} এর সাথে ভালোবাসা",
+                f"হৃদয়ের গান, জীবনের পথ"
+            ],
+            'bridge': f"যখন অন্ধকার আসে\n{theme} তুমিই আমার আলো",
+            'outro': f"{theme}... {theme}...\nচিরকাল আমার সাথে"
+        },
+        'punjabi': {
+            'verse': [
+                f"{theme} ਮੇਰੇ ਦਿਲ ਵਿੱਚ",
+                f"ਤੂੰ ਹਮੇਸ਼ਾ ਯਾਦਾਂ ਵਿੱਚ",
+                f"{theme} ਤੂੰ ਹੀ ਮੇਰੀ ਜ਼ਿੰਦਗੀ",
+                f"ਹਰ ਪਲ ਨਵੀਂ ਖੁਸ਼ੀ"
+            ],
+            'chorus': [
+                f"ਓ {theme}, ਤੂੰ ਹੀ ਮੇਰੀ ਜਾਨ",
+                f"ਤੇਰੇ ਬਿਨਾ ਨਹੀਂ ਕੋਈ ਥਾਂ",
+                f"{theme} ਨਾਲ ਪਿਆਰ",
+                f"ਦਿਲ ਦਾ ਗੀਤ, ਜੀਵਨ ਦਾ ਰਾਹ"
+            ],
+            'bridge': f"ਜਦੋਂ ਹਨੇਰਾ ਆਵੇ\n{theme} ਤੂੰ ਹੀ ਮੇਰੀ ਰੋਸ਼ਨੀ",
+            'outro': f"{theme}... {theme}...\nਹਮੇਸ਼ਾ ਮੇਰੇ ਨਾਲ"
+        },
+        'gujarati': {
+            'verse': [
+                f"{theme} મારા હૃદયમાં",
+                f"તું હંમેશા યાદમાં",
+                f"{theme} તું જ મારું જીવન",
+                f"દરેક ક્ષણે નવો આનંદ"
+            ],
+            'chorus': [
+                f"ઓ {theme}, તું જ મારો પ્રાણ",
+                f"તારા વિના મને સ્થાન નથી",
+                f"{theme} સાથે પ્રેમ",
+                f"હૃદયનું ગીત, જીવનનો માર્ગ"
+            ],
+            'bridge': f"જ્યારે અંધકાર આવે\n{theme} તું જ મારો પ્રકાશ",
+            'outro': f"{theme}... {theme}...\nસદા મારી સાથે"
+        }
+    }
+    
+    template = lyrics_templates.get(language, lyrics_templates['hindi'])
+    
+    # Build lyrics structure
+    lyrics = f"""[Verse 1]
+{template['verse'][0]}
+{template['verse'][1]}
+{template['verse'][2]}
+{template['verse'][3]}
+
+[Chorus]
+{template['chorus'][0]}
+{template['chorus'][1]}
+{template['chorus'][2]}
+{template['chorus'][3]}
+
+[Verse 2]
+{template['verse'][0]}
+{template['verse'][2]}
+{template['verse'][1]}
+{template['verse'][3]}
+
+[Chorus]
+{template['chorus'][0]}
+{template['chorus'][1]}
+{template['chorus'][2]}
+{template['chorus'][3]}
+
+[Bridge]
+{template['bridge']}
+
+[Final Chorus]
+{template['chorus'][0]}
+{template['chorus'][1]}
+{template['chorus'][2]}
+{template['chorus'][3]}
+
+[Outro]
+{template['outro']}
+"""
+    
+    return lyrics
+
+def generate_lyrics_template(theme, genre, mood, language='english'):
+    """Generate lyrics using templates based on genre, mood, and language"""
+    
+    # If language is not English, generate transliterated/regional lyrics
+    if language != 'english':
+        return generate_multilingual_lyrics(theme, genre, mood, language)
     
     # Theme-based verse templates
     verse_templates = {

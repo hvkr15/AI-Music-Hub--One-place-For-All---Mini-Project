@@ -1,71 +1,71 @@
-// Lyrics Generator JavaScript
+// Song Generator JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    const lyricsForm = document.getElementById('lyricsForm');
+    const songForm = document.getElementById('songForm');
     
-    if (lyricsForm) {
-        lyricsForm.addEventListener('submit', async function(e) {
+    if (songForm) {
+        songForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            await generateLyrics();
+            await generateSong();
         });
     }
 });
 
-async function generateLyrics() {
-    const theme = document.getElementById('lyricsTheme').value.trim();
-    const language = document.getElementById('lyricsLanguage').value;
-    const genre = document.getElementById('lyricsGenre').value;
-    const mood = document.getElementById('lyricsMood').value;
+async function generateSong() {
+    const prompt = document.getElementById('songPrompt').value.trim();
+    const duration = document.getElementById('songDuration').value;
+    const tempo = document.getElementById('songTempo').value;
+    const vocals = document.getElementById('songVocals').value;
     
-    if (!theme) {
-        alert('Please enter a theme for your song');
+    if (!prompt) {
+        alert('Please describe your song');
         return;
     }
     
     // Show loading, hide output
-    const loadingDiv = document.getElementById('loadingLyrics');
-    const outputDiv = document.getElementById('lyricsOutput');
+    const loadingDiv = document.getElementById('loadingSong');
+    const outputDiv = document.getElementById('songOutput');
     
     loadingDiv.style.display = 'block';
     outputDiv.style.display = 'none';
     
     try {
-        const response = await fetch('/generate-lyrics', {
+        const response = await fetch('/generate-song', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                theme: theme,
-                language: language,
-                genre: genre,
-                mood: mood
+                prompt: prompt,
+                duration: duration,
+                tempo: tempo,
+                vocals: vocals
             })
         });
         
         const data = await response.json();
         
         if (data.success) {
-            document.getElementById('generatedLyrics').textContent = data.lyrics;
+            document.getElementById('generatedSong').textContent = data.song_description;
             loadingDiv.style.display = 'none';
             outputDiv.style.display = 'block';
             
             // Scroll to output
             outputDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-            throw new Error(data.error || 'Failed to generate lyrics');
+            throw new Error(data.error || 'Failed to generate song description');
         }
     } catch (error) {
-        console.error('Error generating lyrics:', error);
+        console.error('Error generating song:', error);
         loadingDiv.style.display = 'none';
-        alert('Error generating lyrics. Please try again.');
+        alert('Error generating song description. Please try again.');
     }
 }
 
-function copyLyrics() {
-    const lyricsText = document.getElementById('generatedLyrics').textContent;
+function copySong() {
+    const songText = document.getElementById('generatedSong').textContent;
     
-    navigator.clipboard.writeText(lyricsText).then(() => {
+    navigator.clipboard.writeText(songText).then(() => {
         // Show success feedback
         const btn = event.target.closest('button');
         const originalHTML = btn.innerHTML;
@@ -79,21 +79,20 @@ function copyLyrics() {
             btn.classList.add('btn-outline-primary');
         }, 2000);
     }).catch(err => {
-        console.error('Failed to copy lyrics:', err);
-        alert('Failed to copy lyrics. Please try again.');
+        console.error('Failed to copy song:', err);
+        alert('Failed to copy. Please try again.');
     });
 }
 
-function downloadLyrics() {
-    const lyricsText = document.getElementById('generatedLyrics').textContent;
-    const theme = document.getElementById('lyricsTheme').value;
-    const genre = document.getElementById('lyricsGenre').value;
+function downloadSong() {
+    const songText = document.getElementById('generatedSong').textContent;
+    const prompt = document.getElementById('songPrompt').value;
     
     // Create filename
-    const filename = `lyrics-${theme.toLowerCase().replace(/\s+/g, '-')}-${genre}.txt`;
+    const filename = `song-description-${Date.now()}.txt`;
     
     // Create blob and download
-    const blob = new Blob([lyricsText], { type: 'text/plain' });
+    const blob = new Blob([songText], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -117,11 +116,8 @@ function downloadLyrics() {
     }, 2000);
 }
 
-function generateNewLyrics() {
+function generateNewSong() {
     // Hide output and scroll to form
-    document.getElementById('lyricsOutput').style.display = 'none';
-    document.getElementById('lyricsForm').scrollIntoView({ behavior: 'smooth' });
-    
-    // Optionally clear the form
-    // document.getElementById('lyricsTheme').value = '';
+    document.getElementById('songOutput').style.display = 'none';
+    document.getElementById('songForm').scrollIntoView({ behavior: 'smooth' });
 }

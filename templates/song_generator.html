@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Song Generator | AI Music Hub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-music"></i>
+                <span>AI Music Hub</span>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/lyrics-generator" class="nav-link">Lyrics Generator</a>
+                <a href="/song-generator" class="nav-link active">Song Generator</a>
+                <a href="/#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="song-generator-page" style="padding-top: 100px; min-height: 100vh;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Page Header -->
+                    <div class="text-center mb-5">
+                        <div class="ai-tool-icon mx-auto mb-4" style="width: 120px; height: 120px; background: linear-gradient(135deg, #f59e0b, #ef4444); font-size: 3.5rem;">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h1 class="display-4 fw-bold mb-3" style="color: var(--text-primary);">
+                            AI Song Generator
+                        </h1>
+                        <p class="lead text-secondary">
+                            Create complete song descriptions with AI! Simply describe your vision, and our AI will
+                            generate a detailed song prompt including genre, mood, instruments, and musical style.
+                        </p>
+                    </div>
+
+                    <!-- Song Generation Card -->
+                    <div class="card shadow-lg border-0 mb-5" style="border-radius: 20px; overflow: hidden;">
+                        <div class="card-body p-5">
+                            <!-- Input Form -->
+                            <form id="songForm">
+                                <div class="mb-4">
+                                    <label for="songPrompt" class="form-label fs-5 fw-semibold">
+                                        <i class="fas fa-lightbulb text-warning"></i> Describe Your Song
+                                    </label>
+                                    <textarea class="form-control form-control-lg" id="songPrompt" rows="4"
+                                           placeholder="e.g., An upbeat summer pop song about friendship and good times at the beach, with tropical vibes and feel-good energy" required></textarea>
+                                    <div class="form-text">Be as detailed as possible about the mood, theme, and style you want</div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="songDuration" class="form-label fs-5 fw-semibold">
+                                            <i class="fas fa-clock text-info"></i> Duration
+                                        </label>
+                                        <select class="form-select form-select-lg" id="songDuration">
+                                            <option value="short">Short (2-3 min)</option>
+                                            <option value="medium" selected>Medium (3-4 min)</option>
+                                            <option value="long">Long (4-5 min)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="songTempo" class="form-label fs-5 fw-semibold">
+                                            <i class="fas fa-drum text-danger"></i> Tempo
+                                        </label>
+                                        <select class="form-select form-select-lg" id="songTempo">
+                                            <option value="slow">Slow (60-80 BPM)</option>
+                                            <option value="medium" selected>Medium (80-120 BPM)</option>
+                                            <option value="fast">Fast (120-160 BPM)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="songVocals" class="form-label fs-5 fw-semibold">
+                                            <i class="fas fa-microphone text-success"></i> Vocals
+                                        </label>
+                                        <select class="form-select form-select-lg" id="songVocals">
+                                            <option value="male">Male Vocals</option>
+                                            <option value="female" selected>Female Vocals</option>
+                                            <option value="mixed">Mixed Vocals</option>
+                                            <option value="instrumental">Instrumental Only</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-lg btn-primary" 
+                                            style="background: linear-gradient(135deg, #f59e0b, #ef4444); border: none; padding: 1rem;">
+                                        <i class="fas fa-magic"></i> Generate Song Description
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Loading Indicator -->
+                            <div id="loadingSong" class="text-center my-5" style="display: none;">
+                                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3 text-secondary">Crafting your song description...</p>
+                            </div>
+
+                            <!-- Song Output -->
+                            <div id="songOutput" class="mt-5" style="display: none;">
+                                <div class="alert alert-success d-flex align-items-center" role="alert">
+                                    <i class="fas fa-check-circle fs-4 me-3"></i>
+                                    <div>
+                                        <h5 class="alert-heading mb-0">Song Description Generated Successfully!</h5>
+                                    </div>
+                                </div>
+
+                                <div class="card border-0 shadow-sm mb-4">
+                                    <div class="card-header bg-gradient text-white" 
+                                         style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                        <h5 class="mb-0"><i class="fas fa-music"></i> Your AI-Generated Song Description</h5>
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <pre id="generatedSong" class="lyrics-text" style="background: #fff9f0;"></pre>
+                                    </div>
+                                </div>
+
+                                <!-- Info Box -->
+                                <div class="alert alert-info">
+                                    <h6 class="alert-heading"><i class="fas fa-info-circle"></i> How to Use This Description</h6>
+                                    <p class="mb-0">Copy this description and use it with AI music generation platforms like:</p>
+                                    <ul class="mt-2 mb-0">
+                                        <li><strong>Suno AI</strong> - Paste as your prompt</li>
+                                        <li><strong>Udio</strong> - Use for song generation</li>
+                                        <li><strong>MusicLM</strong> - Feed as input description</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap">
+                                    <button class="btn btn-outline-primary btn-lg" onclick="copySong()">
+                                        <i class="fas fa-copy"></i> Copy Description
+                                    </button>
+                                    <button class="btn btn-outline-success btn-lg" onclick="downloadSong()">
+                                        <i class="fas fa-download"></i> Download as TXT
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-lg" onclick="generateNewSong()">
+                                        <i class="fas fa-redo"></i> Generate New
+                                    </button>
+                                    <a href="https://suno.com" target="_blank" class="btn btn-lg" 
+                                       style="background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white; border: none;">
+                                        <i class="fas fa-external-link-alt"></i> Try on Suno AI
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="row mt-5">
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h5>AI-Powered</h5>
+                                <p class="text-muted">Smart song descriptions</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                                <h5>Customizable</h5>
+                                <p class="text-muted">Set duration & tempo</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                    <i class="fas fa-music-note"></i>
+                                </div>
+                                <h5>Detailed Output</h5>
+                                <p class="text-muted">Genre, mood, instruments</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon-small mx-auto mb-3" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h5>Instant Results</h5>
+                                <p class="text-muted">Generate in seconds</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div class="card border-0 shadow-sm mt-4" style="border-radius: 20px; background: #fff9f0;">
+                        <div class="card-body p-5">
+                            <h4 class="mb-4"><i class="fas fa-lightbulb text-warning"></i> Tips for Better Descriptions</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Be specific about the mood and emotion</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Mention preferred instruments if any</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Describe the song's energy level</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Include genre references for clarity</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Add context about the song's purpose</li>
+                                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Experiment with different prompts</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/song-generator.js') }}"></script>
+</body>
+</html>

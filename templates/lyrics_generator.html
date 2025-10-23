@@ -20,7 +20,7 @@
             <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/lyrics-generator" class="nav-link active">Lyrics Generator</a>
-                <a href="/song-creator" class="nav-link">Song Creator</a>
+                <a href="/song-generator" class="nav-link">Song Generator</a>
                 <a href="/#about" class="nav-link">About</a>
             </div>
         </div>
@@ -60,7 +60,24 @@
                                 </div>
 
                                 <div class="row mb-4">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="lyricsLanguage" class="form-label fs-5 fw-semibold">
+                                            <i class="fas fa-language text-primary"></i> Language
+                                        </label>
+                                        <select class="form-select form-select-lg" id="lyricsLanguage">
+                                            <option value="english">English</option>
+                                            <option value="hindi">Hindi (हिंदी)</option>
+                                            <option value="kannada">Kannada (ಕನ್ನಡ)</option>
+                                            <option value="tamil">Tamil (தமிழ்)</option>
+                                            <option value="telugu">Telugu (తెలుగు)</option>
+                                            <option value="malayalam">Malayalam (മലയാളം)</option>
+                                            <option value="marathi">Marathi (मराठी)</option>
+                                            <option value="bengali">Bengali (বাংলা)</option>
+                                            <option value="punjabi">Punjabi (ਪੰਜਾਬੀ)</option>
+                                            <option value="gujarati">Gujarati (ગુજરાતી)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
                                         <label for="lyricsGenre" class="form-label fs-5 fw-semibold">
                                             <i class="fas fa-guitar text-danger"></i> Genre
                                         </label>
@@ -75,7 +92,7 @@
                                             <option value="reggae">Reggae</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label for="lyricsMood" class="form-label fs-5 fw-semibold">
                                             <i class="fas fa-heart text-danger"></i> Mood
                                         </label>

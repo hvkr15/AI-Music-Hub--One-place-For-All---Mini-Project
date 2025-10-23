@@ -121,6 +121,137 @@ def search_songs():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/generate-lyrics', methods=['POST'])
+def generate_lyrics():
+    """Generate AI lyrics based on user input"""
+    try:
+        data = request.get_json()
+        theme = data.get('theme', '')
+        genre = data.get('genre', 'pop')
+        mood = data.get('mood', 'happy')
+        
+        if not theme:
+            return jsonify({'error': 'Theme is required'}), 400
+        
+        # Simple lyrics generation (template-based)
+        lyrics = generate_lyrics_template(theme, genre, mood)
+        
+        return jsonify({
+            'success': True,
+            'lyrics': lyrics,
+            'theme': theme,
+            'genre': genre,
+            'mood': mood
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+def generate_lyrics_template(theme, genre, mood):
+    """Generate lyrics using templates based on genre and mood"""
+    
+    # Theme-based verse templates
+    verse_templates = {
+        'happy': [
+            f"When I think about {theme}, my heart starts to glow",
+            f"Every moment with {theme}, letting feelings flow",
+            f"Dancing through the day, {theme} lights my way",
+            f"Nothing can compare to this joy I display"
+        ],
+        'sad': [
+            f"Memories of {theme} fade like morning dew",
+            f"Lost in thoughts of {theme}, feeling so blue",
+            f"Searching for the light, through the darkest night",
+            f"Hoping {theme} will make things right"
+        ],
+        'energetic': [
+            f"Let's go, {theme} is calling out my name",
+            f"Feel the beat, {theme} sets my soul aflame",
+            f"No stopping now, we're breaking all the chains",
+            f"Living for {theme}, running through the veins"
+        ],
+        'calm': [
+            f"Peaceful moments with {theme} by my side",
+            f"Gentle whispers where {theme} resides",
+            f"In the stillness, {theme} helps me find",
+            f"A quiet place within my mind"
+        ]
+    }
+    
+    chorus_templates = {
+        'pop': [
+            f"Oh {theme}, you're everything I need",
+            f"{theme}, you're the one who sets me free",
+            f"Together we can fly so high",
+            f"With {theme}, reaching for the sky"
+        ],
+        'rock': [
+            f"{theme}! Breaking through the night!",
+            f"{theme}! We're ready for the fight!",
+            f"Nothing's gonna hold us back!",
+            f"With {theme}, we're on the attack!"
+        ],
+        'jazz': [
+            f"{theme} in the moonlight, soft and slow",
+            f"Swaying to the rhythm, letting feelings show",
+            f"In this jazzy paradise we've found",
+            f"With {theme}, love knows no bound"
+        ],
+        'hip-hop': [
+            f"Yeah, {theme} on my mind all day",
+            f"Living life my own unique way",
+            f"{theme} got me feeling so fly",
+            f"Reaching for the stars up in the sky"
+        ]
+    }
+    
+    # Select templates based on mood and genre
+    verses = verse_templates.get(mood, verse_templates['happy'])
+    chorus = chorus_templates.get(genre, chorus_templates['pop'])
+    
+    # Build the complete lyrics
+    lyrics = f"""[Verse 1]
+{verses[0]}
+{verses[1]}
+{verses[2]}
+{verses[3]}
+
+[Chorus]
+{chorus[0]}
+{chorus[1]}
+{chorus[2]}
+{chorus[3]}
+
+[Verse 2]
+The rhythm of {theme} pulses through my soul
+With every beat, {theme} makes me whole
+Can you feel the magic in the air?
+{theme}'s presence everywhere
+
+[Chorus]
+{chorus[0]}
+{chorus[1]}
+{chorus[2]}
+{chorus[3]}
+
+[Bridge]
+When the world feels cold and gray
+{theme} shows me the way
+Through the highs and through the lows
+{theme}'s the melody that flows
+
+[Final Chorus]
+{chorus[0]}
+{chorus[1]}
+{chorus[2]}
+{chorus[3]}
+
+[Outro]
+{theme}... {theme}...
+Forever in my heart, {theme}
+"""
+    
+    return lyrics
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404

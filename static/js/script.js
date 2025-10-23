@@ -437,3 +437,87 @@ function openYouTubeMusic(songName, artistName) {
     // Open in new tab
     window.open(youtubeSearchUrl, '_blank');
 }
+
+// ===================================
+// AI Lyrics Generation
+// ===================================
+async function generateLyrics() {
+    const theme = document.getElementById('lyricsTheme').value.trim();
+    const genre = document.getElementById('lyricsGenre').value;
+    const mood = document.getElementById('lyricsMood').value;
+    
+    if (!theme) {
+        alert('Please enter a theme for your song!');
+        return;
+    }
+    
+    showLoading();
+    
+    try {
+        const response = await fetch('/generate-lyrics', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                theme: theme,
+                genre: genre,
+                mood: mood
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            document.getElementById('generatedLyrics').textContent = data.lyrics;
+            document.getElementById('lyricsOutput').style.display = 'block';
+            
+            // Scroll to output
+            document.getElementById('lyricsOutput').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest' 
+            });
+        } else {
+            alert('Error generating lyrics: ' + data.error);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while generating lyrics. Please try again.');
+    } finally {
+        hideLoading();
+    }
+}
+
+function copyLyrics() {
+    const lyrics = document.getElementById('generatedLyrics').textContent;
+    navigator.clipboard.writeText(lyrics).then(() => {
+        // Show success message
+        const btn = event.target.closest('button');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        btn.classList.add('btn-success');
+        btn.classList.remove('btn-outline-primary');
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-primary');
+        }, 2000);
+    }).catch(err => {
+        alert('Failed to copy lyrics');
+    });
+}
+
+function downloadLyrics() {
+    const lyrics = document.getElementById('generatedLyrics').textContent;
+    const theme = document.getElementById('lyricsTheme').value;
+    const blob = new Blob([lyrics], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${theme}-lyrics.txt`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}

@@ -1,4 +1,4 @@
-# 🎵 AI Music Hub - One Place for All
+# 🎵 Dynamic Tune - One Place for All
 
 **Your Complete AI-Powered Music Platform**
 
@@ -10,9 +10,9 @@ An intelligent music ecosystem that combines machine learning recommendations, r
 ![AI Powered](https://img.shields.io/badge/AI-Powered-purple.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## 🌟 What Makes This Special?
+## 🚀 What Makes This Special?
 
-**AI Music Hub** is not just another music recommendation system - it's a comprehensive platform that brings together:
+**Dynamic Tune** is not just another music recommendation system - it's a comprehensive platform that brings together:
 - 🎯 **Smart Recommendations** powered by Machine Learning
 - 🌤️ **Weather-Based Playlists** that match your environment
 - 🎼 **AI Song Generation** via Suno AI integration
@@ -599,9 +599,9 @@ Direct Spotify and YouTube Music playback buttons on every song
 4. **Complete Workflow**: End-to-end music discovery and creation pipeline
 5. **One-Stop Solution**: "One Place for All" - truly comprehensive platform
 
-## � Contributing
+## 🤝 Contributing
 
-We welcome contributions to improve AI Music Hub! This project is open for enhancements and bug fixes.
+We welcome contributions to improve Dynamic Tune! This project is open for enhancements and bug fixes.
 
 ### How to Contribute
 
@@ -672,7 +672,7 @@ This project is created for educational purposes as part of a **5th Semester AIM
 
 ### MIT License
 
-Copyright (c) 2025 AI Music Hub
+Copyright (c) 2025 Dynamic Tune
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -738,7 +738,7 @@ We're grateful to the creators and maintainers of:
 
 <div align="center">
 
-### 🎵 **AI Music Hub - One Place for All** 🎵
+### 🎵 **Dynamic Tune - One Place for All** 🎵
 
 **Discover • Create • Generate • Play**
 

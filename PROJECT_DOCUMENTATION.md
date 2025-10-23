@@ -1,6 +1,6 @@
 # 🎓 Project Documentation# 🎓 Project Documentation
 
-## AI Music Hub - Complete Music Intelligence Platform## AI Music Hub - One Place for All
+## Dynamic Tune - Complete Music Intelligence Platform## Dynamic Tune - One Place for All
 
 
 
@@ -86,7 +86,7 @@ Traditional music platforms face several limitations:- Song creation requires mu
 
 4. Fragmented user experience across multiple platforms### Our Solution
 
-5. No environmental context in recommendations**AI Music Hub** solves this by providing:
+5. No environmental context in recommendations**Dynamic Tune** solves this by providing:
 
 6. Poor performance with large datasets1. Context-aware recommendations (weather + ML)
 
@@ -94,7 +94,7 @@ Traditional music platforms face several limitations:- Song creation requires mu
 
 ### Our Solution3. AI-powered song and lyrics generation in one interface
 
-**AI Music Hub** addresses these challenges through:4. Seamless workflow: Discover → Create → Generate → Play
+**Dynamic Tune** addresses these challenges through:4. Seamless workflow: Discover → Create → Generate → Play
 
 1. **Massive Dataset**: 57,650 songs with full lyrics from Spotify
 
@@ -1110,7 +1110,7 @@ navigator.geolocation.getCurrentPosition(- **Workflow**: Visual three-step creat
 
 :root {```
 
-    --primary-color: #5b7eff;AI Music Hub - Mini Project/
+    --primary-color: #5b7eff;Dynamic Tune - Mini Project/
 
     --accent-color: #ec4899;│
 
@@ -1422,7 +1422,7 @@ http://127.0.0.1:5000{
 
     "weather": {
 
-**AI Music Hub** - 5th Semester AIML Mini Project        "temperature": 22.5,
+**Dynamic Tune** - 5th Semester AIML Mini Project        "temperature": 22.5,
 
         "feels_like": 21.0,
 
@@ -1910,3 +1910,4 @@ CMD ["python", "app.py"]
 ---
 
 For questions or issues, refer to README.md or create an issue in the repository.
+

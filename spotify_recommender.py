@@ -52,13 +52,13 @@ class SpotifyMusicRecommender:
     
     def _build_recommendation_model(self):
         """Build the TF-IDF model (similarity computed on-demand)"""
-        # Create TF-IDF vectorizer with optimized parameters
+        # Create TF-IDF vectorizer with optimized parameters for fast loading
         self.tfidf_vectorizer = TfidfVectorizer(
-            max_features=10000,  # Increased for larger dataset
+            max_features=5000,  # Reduced for faster computation
             stop_words='english',
             ngram_range=(1, 2),
-            min_df=2,  # Ignore terms that appear in less than 2 documents
-            max_df=0.8  # Ignore terms that appear in more than 80% of documents
+            min_df=3,  # Ignore terms that appear in less than 3 documents
+            max_df=0.7  # Ignore terms that appear in more than 70% of documents
         )
         
         # Fit and transform the combined features

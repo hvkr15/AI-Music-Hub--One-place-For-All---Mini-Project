@@ -31,6 +31,18 @@
                 <a href="/lyrics-generator" class="nav-link">Lyrics Generator</a>
                 <a href="/song-generator" class="nav-link">Song Generator</a>
                 <a href="#about" class="nav-link">About</a>
+                {% if is_logged_in %}
+                <span class="nav-link" style="color: var(--primary-color); font-weight: 600;">
+                    <i class="fas fa-user-circle"></i> {{ username }}
+                </span>
+                <a href="/logout" class="nav-link" style="color: var(--error);">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+                {% else %}
+                <a href="/login" class="nav-link" style="color: var(--success);">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -39,6 +51,11 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
+                {% if is_logged_in %}
+                <div style="text-align: center; margin-bottom: 1rem; color: var(--primary-color); font-size: 1.25rem;">
+                    <i class="fas fa-wave-square"></i> Welcome back, <strong>{{ username }}</strong>!
+                </div>
+                {% endif %}
                 <h1 class="hero-title">
                     Dynamic Tune
                     <span class="gradient-text">One Place for All</span>
@@ -46,6 +63,7 @@
                 <p class="hero-subtitle">
                     Your complete AI-powered music platform - Get personalized recommendations, 
                     generate original songs with Suno AI, and create stunning lyrics with AI
+                </p>
                 </p>
                 <div class="cta-buttons">
                     <button class="btn btn-primary" onclick="scrollToSection('song-recommend')">

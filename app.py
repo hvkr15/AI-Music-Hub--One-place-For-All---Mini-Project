@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import pandas as pd
 import os
 from recommendation import MusicRecommender
@@ -6,7 +6,14 @@ from spotify_recommender import SpotifyMusicRecommender
 from weather_recommendation import WeatherMusicRecommender
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-here'
+app.config['SECRET_KEY'] = 'dynamic-tune-secret-key-2025-music-ai'
+
+# Simple user database (in production, use proper database)
+USERS = {
+    'admin': 'admin123',
+    'user': 'user123',
+    'demo': 'demo123'
+}
 
 # Initialize recommenders
 music_recommender = None
@@ -60,10 +67,39 @@ def load_data():
         traceback.print_exc()
         return False
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Login page route"""
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if username in USERS and USERS[username] == password:
+            session['logged_in'] = True
+            session['username'] = username
+            return redirect(url_for('home'))
+        else:
+            return render_template('login.html', error='Invalid username or password')
+    
+    # If already logged in, redirect to home
+    if session.get('logged_in'):
+        return redirect(url_for('home'))
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    """Logout route"""
+    session.clear()
+    return redirect(url_for('login'))
+
 @app.route('/')
 def home():
     """Home page route"""
-    return render_template('index.html')
+    # Get username from session, or 'Guest' if not logged in
+    username = session.get('username', 'Guest')
+    is_logged_in = session.get('logged_in', False)
+    return render_template('index.html', username=username, is_logged_in=is_logged_in)
 
 @app.route('/lyrics-generator')
 def lyrics_generator():
@@ -694,7 +730,9 @@ if __name__ == '__main__':
         print("\n🚀 Starting server...")
         print("📍 Open http://127.0.0.1:5000 in your browser")
         print("=" * 60)
-        app.run(debug=True, host='0.0.0.0', port=5000)
+        # Disable debug mode for production use with large dataset
+        # Debug mode causes double loading of dataset
+        app.run(debug=False, host='0.0.0.0', port=5000)
     else:
         print("\n❌ Failed to start: Dataset not found")
         print("Please add 'data/music_data.csv' and restart")

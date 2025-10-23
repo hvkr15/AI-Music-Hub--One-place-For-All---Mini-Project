@@ -222,14 +222,14 @@ function displayWeatherInfo(weather, mood) {
             </div>
             <div class="weather-details">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
-                    <h3 style="margin: 0;">${weather.city}</h3>
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary-color); font-size: 1.25rem;"></i>
+                    <h3 style="margin: 0; font-size: 1.75rem; color: var(--text-primary);">${weather.city}</h3>
                 </div>
-                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
                     <i class="fas fa-location-arrow"></i> Your current location
                 </p>
                 <div class="weather-temp">${Math.round(weather.temperature)}°C</div>
-                <p style="color: var(--text-secondary); text-transform: capitalize;">
+                <p style="color: var(--text-secondary); text-transform: capitalize; font-size: 1.125rem; margin-top: 0.5rem;">
                     ${weather.description}
                 </p>
                 <div class="weather-meta">

@@ -190,6 +190,9 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 section {
@@ -210,7 +213,9 @@ section {
 
 .hero-content {
     max-width: 800px;
+    margin: 0 auto;
     text-align: center;
+    width: 100%;
 }
 
 .hero-title {

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import os
 from recommendation import MusicRecommender
+from spotify_recommender import SpotifyMusicRecommender
 from weather_recommendation import WeatherMusicRecommender
 
 app = Flask(__name__)
@@ -10,23 +11,48 @@ app.config['SECRET_KEY'] = 'your-secret-key-here'
 # Initialize recommenders
 music_recommender = None
 weather_recommender = None
+use_spotify_dataset = False
 
 def load_data():
     """Load music dataset and initialize recommenders"""
-    global music_recommender, weather_recommender
+    global music_recommender, weather_recommender, use_spotify_dataset
     try:
-        # Load the music dataset
-        if os.path.exists('data/music_data.csv'):
+        # Try to load Spotify Million Song Dataset first
+        if os.path.exists('data/spotify_million_songs.csv'):
+            print("📊 Loading Spotify Million Song Dataset...")
+            df = pd.read_csv('data/spotify_million_songs.csv')
+            
+            # Use Spotify recommender for the large dataset
+            music_recommender = SpotifyMusicRecommender(df)
+            use_spotify_dataset = True
+            print("✓ Spotify dataset loaded successfully!")
+            
+            # For weather recommendations, we'll use a sample or create genre mapping
+            # Since Spotify dataset doesn't have genre/mood, we'll skip weather recommendations
+            # or implement a fallback
+            print("ℹ️  Weather-based recommendations using Spotify dataset (limited features)")
+            weather_recommender = None  # Disable for now as Spotify dataset lacks mood/genre
+            
+            return True
+            
+        # Fallback to original dataset
+        elif os.path.exists('data/music_data.csv'):
+            print("📊 Loading original music dataset...")
             df = pd.read_csv('data/music_data.csv')
             music_recommender = MusicRecommender(df)
             weather_recommender = WeatherMusicRecommender(df)
-            print("✓ Data loaded successfully!")
+            use_spotify_dataset = False
+            print("✓ Original dataset loaded successfully!")
             return True
+            
         else:
-            print("⚠ Warning: music_data.csv not found. Please add dataset.")
+            print("⚠ Warning: No dataset found. Please add dataset.")
             return False
+            
     except Exception as e:
         print(f"Error loading data: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 @app.route('/')

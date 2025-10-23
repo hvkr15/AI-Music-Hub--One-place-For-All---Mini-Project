@@ -19,7 +19,7 @@ ENV/
 
 # Don't upload large dataset to Vercel (causes timeout)
 data/spotify_million_songs.csv
-data/*.csv
+# Note: Keep data/music_data.csv for fallback dataset
 
 # Git files
 .git/

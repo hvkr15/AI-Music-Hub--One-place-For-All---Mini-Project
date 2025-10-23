@@ -654,7 +654,23 @@ def server_error(e):
     return render_template('500.html'), 500
 
 # Initialize data when module is loaded (for Vercel)
-load_data()
+# Use try-except to prevent build failures
+try:
+    load_data()
+except Exception as e:
+    print(f"⚠️  Warning: Could not load data at startup: {e}")
+    print("Data will be loaded on first request")
+
+# Add lazy loading for first request
+@app.before_request
+def ensure_data_loaded():
+    """Ensure data is loaded before handling any request"""
+    global music_recommender
+    if music_recommender is None:
+        try:
+            load_data()
+        except Exception as e:
+            print(f"Error loading data: {e}")
 
 if __name__ == '__main__':
     print("=" * 60)

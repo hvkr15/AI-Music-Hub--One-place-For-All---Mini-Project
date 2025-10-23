@@ -2,24 +2,30 @@
 
 **Your Complete AI-Powered Music Platform**
 
-An intelligent music ecosystem that combines machine learning recommendations, real-time weather analysis, AI song generation, and AI-powered lyrics creation - all in one beautiful, modern web application. Built as a 5th Semester AIML Mini Project.
+An intelligent music ecosystem that combines machine learning recommendations, real-time weather analysis, AI song generation, and **fully integrated AI-powered lyrics creation** - all in one beautiful, modern web application. Built as a 5th Semester AIML Mini Project.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)
+![Flask](https://img.shields.io/badge/Flask-2.3.3-green.svg)
 ![Machine Learning](https://img.shields.io/badge/ML-Scikit--learn-orange.svg)
 ![AI Powered](https://img.shields.io/badge/AI-Powered-purple.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.2-blueviolet.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+🌐 **Live Demo:** [https://dynamic-tune-music-hub.onrender.com/](https://dynamic-tune-music-hub.onrender.com/)
 
 ## 🚀 What Makes This Special?
 
 **Dynamic Tune** is not just another music recommendation system - it's a comprehensive platform that brings together:
-- 🎯 **Smart Recommendations** powered by Machine Learning
-- 🌤️ **Weather-Based Playlists** that match your environment
-- 🎼 **AI Song Generation** via Suno AI integration
-- ✍️ **AI Lyrics Creation** through Toolbaz integration
+- 🎯 **Smart Recommendations** powered by Machine Learning (TF-IDF + Cosine Similarity)
+- 🌤️ **Weather-Based Playlists** with automatic city detection that match your environment
+- 🎼 **AI Song Description Generator** - Create detailed song prompts with AI analysis
+- ✍️ **Integrated AI Lyrics Generator** - 10 languages including 9 Indian languages (no external redirects!)
 - 🎵 **Direct Music Playback** on Spotify and YouTube Music
+- 🎨 **Modern Bootstrap 5 UI** with glass morphism design and light theme
 
 **Truly ONE PLACE FOR ALL your music needs!**
+
+---
 
 ## ✨ Complete Feature Set
 
@@ -29,14 +35,16 @@ An intelligent music ecosystem that combines machine learning recommendations, r
 - **Real-time Search**: Autocomplete search with instant suggestions
 - **High Accuracy**: Personalized recommendations based on comprehensive song characteristics
 - **Similarity Scoring**: Visual percentage match for each recommendation
+- **84-Song Curated Dataset**: Diverse collection across multiple genres
 
 ### 🌤️ Weather-Based Music Discovery (Signature Feature)
 - **Automatic Location Detection**: Browser-based GPS geolocation
 - **Real-Time Weather Analysis**: Live integration with OpenWeatherMap API
+- **City Name Display**: Prominently shows your current city with beautiful icons
 - **Smart Mood Mapping**: Intelligently matches weather conditions to music moods
 - **Dynamic Playlists**: Curated playlists that adapt to your current weather
-- **Location Display**: Shows city name and country code
 - **Weather Details**: Temperature, feels-like, humidity, and conditions
+- **Visual Weather Icons**: Beautiful weather-specific icons
 
 ### 🎵 Music Platform Integration
 - **Spotify Integration**: Direct "Play on Spotify" buttons for each song
@@ -45,37 +53,58 @@ An intelligent music ecosystem that combines machine learning recommendations, r
 - **Smart Search**: Automatically searches for song + artist combination
 - **New Tab Opening**: Non-disruptive music streaming experience
 
-### 🎼 AI Music Generation (Suno AI)
-- **Create Original Songs**: Transform ideas into complete tracks
-- **Text-to-Music**: Describe your vision and let AI compose
-- **Professional Quality**: Studio-quality output with vocals and instruments
-- **Multiple Genres**: Support for various music styles
-- **Instant Creation**: Generate songs in minutes
-- **Direct Integration**: Seamless redirect to Suno AI platform
+### 🎼 AI Song Description Generator (NEW!)
+- **Create Song Prompts**: Generate detailed song descriptions with AI
+- **Customizable Parameters**: Choose duration, tempo, and vocal type
+- **Genre & Mood Analysis**: AI suggests appropriate genres and moods
+- **Instrument Recommendations**: Get instrument suggestions for your song
+- **Production Tips**: AI-powered production and mixing suggestions
+- **Beautiful UI**: Clean, modern interface with guitar imagery
+- **Copy & Use**: Easy to copy prompts for use in music production tools
 
-### ✍️ AI Lyrics Generation (Toolbaz)
-- **AI-Powered Writing**: Generate creative and meaningful lyrics
+### ✍️ Integrated AI Lyrics Generator (MAJOR UPDATE!)
+**No more external redirects! Lyrics generation is now fully integrated into Dynamic Tune!**
+
+- **10 Language Support**:
+  - **English** (Global)
+  - **Hindi** (हिंदी)
+  - **Marathi** (मराठी)
+  - **Bengali** (বাংলা)
+  - **Tamil** (தமிழ்)
+  - **Telugu** (తెలుగు)
+  - **Gujarati** (ગુજરાતી)
+  - **Kannada** (ಕನ್ನಡ)
+  - **Malayalam** (മലയാളം)
+  - **Punjabi** (ਪੰਜਾਬੀ)
+
+- **Smart AI Generation**: Creates contextually appropriate lyrics
 - **Genre-Specific**: Tailored lyrics for different music genres
-- **Custom Themes**: Create lyrics based on your chosen theme
-- **Rhyme & Structure**: Proper lyrical structure and rhyme schemes
-- **Multiple Moods**: Adapt lyrics to different emotional tones
-- **Easy Integration**: Direct access to Toolbaz lyric generator
+- **Custom Themes**: Generate lyrics based on any theme or topic
+- **Proper Structure**: Verses, chorus, and bridge formatting
+- **Instant Generation**: Get lyrics in seconds
+- **Copy Functionality**: Easy copy-to-clipboard feature
+- **Beautiful Interface**: Dedicated page with modern design
+- **No External Dependencies**: Everything works within the platform!
 
 ### 🎨 Modern UI/UX Experience
-- **Glassmorphism Design**: Beautiful frosted glass-effect cards
+- **Bootstrap 5.3.2**: Latest Bootstrap framework for responsive design
+- **Glass Morphism Design**: Beautiful frosted glass-effect cards
+- **Light Color Palette**: Soft, eye-friendly colors with gradient accents
 - **Gradient Animations**: Smooth color transitions and effects
-- **Responsive Layout**: Perfect display on desktop, tablet, and mobile
+- **Fully Responsive**: Perfect display on desktop, tablet, and mobile
 - **Smooth Animations**: Engaging fade-in and hover effects
-- **Dark Theme**: Eye-friendly dark mode interface
-- **Intuitive Navigation**: Easy-to-use menu and section navigation
+- **Intuitive Navigation**: Clean menu with dedicated pages for each feature
 - **Loading States**: Professional loading indicators
 - **Interactive Cards**: Hover effects and smooth transitions
+- **Centered Layouts**: Properly aligned content throughout
 
 ### 🔄 Complete Creative Workflow
-1. **Discover** → Find music through AI recommendations
-2. **Generate** → Create original lyrics with AI
-3. **Create** → Produce complete songs with Suno AI
+1. **Discover** → Find music through AI recommendations or weather
+2. **Generate Lyrics** → Create original lyrics in your preferred language
+3. **Create Song Description** → Generate detailed song prompts with AI
 4. **Play** → Listen on Spotify or YouTube Music
+
+---
 
 ## 🚀 Quick Start
 
@@ -83,14 +112,14 @@ An intelligent music ecosystem that combines machine learning recommendations, r
 - Python 3.8 or higher
 - pip (Python package installer)
 - Modern web browser (Chrome, Firefox, Edge, Safari)
-- Internet connection (for weather API and AI tools)
+- Internet connection (for weather API)
 
 ### Installation
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/hvkr15/AI-and-weather-Based-Music-Recommendation-System---Mini-Project.git
-cd "AI-and-weather-Based-Music-Recommendation-System---Mini-Project"
+git clone https://github.com/hvkr15/AI-Music-Hub--One-place-For-All---Mini-Project.git
+cd "AI-Music-Hub--One-place-For-All---Mini-Project"
 ```
 
 2. **Install required packages**
@@ -100,13 +129,14 @@ pip install -r requirements.txt
 
 3. **Configure OpenWeatherMap API** (For weather-based recommendations)
    - Visit [OpenWeatherMap](https://openweathermap.org/api)
-   - Sign up for a free account
-   - Get your API key (Free tier: 1,000 calls/day)
+   - Sign up for a free account (Free tier: 1,000 calls/day)
+   - Get your API key
    - Open `weather_recommendation.py`
-   - Replace the API key on line 19:
+   - Replace the API key on line 20:
    ```python
    self.api_key = "your_api_key_here"
    ```
+   - Current key: `34dc98c68f184a59a5a5e93a2487fe58`
 
 4. **Run the application**
 ```bash
@@ -128,6 +158,63 @@ python app.py
 ```
 Mini Project 5th sem/
 ├── app.py                          # Flask application (main entry point)
+├── recommendation.py               # Music recommendation engine (TF-IDF + Cosine Similarity)
+├── spotify_recommender.py          # Optimized recommender for Spotify Million Song Dataset
+├── weather_recommendation.py       # Weather-based recommendation system with API integration
+├── requirements.txt                # Python dependencies (Flask, pandas, scikit-learn, etc.)
+├── README.md                       # Project documentation
+├── DEPLOYMENT_ALTERNATIVES.md      # Deployment guide for various platforms
+├── data/
+│   ├── music_data.csv             # Original curated dataset (84 songs with genres/moods)
+│   └── spotify_million_songs.csv  # Optional: Spotify Million Song Dataset (57K+ songs)
+├── templates/
+│   ├── index.html                 # Homepage with all features
+│   ├── lyrics_generator.html     # 🆕 Integrated AI lyrics generator (10 languages)
+│   └── song_generator.html       # 🆕 AI song description generator
+└── static/
+    ├── css/
+    │   └── style.css              # Bootstrap 5 + custom styling (light theme)
+    └── js/
+        ├── script.js              # Homepage JavaScript (recommendations, weather)
+        ├── lyrics.js              # 🆕 Lyrics generator logic
+        └── song-generator.js      # 🆕 Song description generator logic
+```
+
+## 🆕 What's New in Latest Version
+
+### Major Updates (October 2024)
+
+✨ **Integrated AI Lyrics Generator**
+- **No more external redirects!** Lyrics generation is now built directly into the platform
+- **10 language support** including 9 Indian languages
+- **Dedicated page** at `/lyrics-generator`
+- **Instant generation** with copy-to-clipboard functionality
+- **Beautiful UI** with language selection cards
+
+✨ **AI Song Description Generator**
+- Create detailed song prompts with AI analysis
+- Customizable duration, tempo, and vocal type
+- AI-powered genre and instrument suggestions
+- Clean interface with guitar imagery
+
+✨ **Enhanced Weather Display**
+- **City name prominently displayed** with larger font and icons
+- **Better visual hierarchy** for weather information
+- **Improved location indicator** with beautiful weather-specific icons
+
+✨ **UI/UX Improvements**
+- **Bootstrap 5.3.2** implementation with modern components
+- **Light color palette** replacing dark theme for better readability
+- **Glass morphism cards** with soft shadows and transparency
+- **Centered hero section** with perfect alignment
+- **Responsive design** improvements across all pages
+- **Separate dedicated pages** for each AI tool
+
+✨ **Code Optimization**
+- Removed robot icon overlay from song generator
+- Fixed container alignment issues
+- Improved page load performance
+- Better error handling throughout
 ├── recommendation.py               # Music recommendation engine (TF-IDF + Cosine Similarity)
 ├── weather_recommendation.py       # Weather-based recommendation system
 ├── requirements.txt                # Python dependencies
@@ -361,6 +448,63 @@ app.run(debug=True, host='0.0.0.0', port=8080)  # Your port
 ```
 
 ### Adding More Weather Icons
+Edit `static/js/script.js` in the `getWeatherIcon()` function
+
+## 🌐 Deployment
+
+### Live Production Site
+🌐 **[https://dynamic-tune-music-hub.onrender.com/](https://dynamic-tune-music-hub.onrender.com/)**
+
+The application is deployed on **Render.com** with the following configuration:
+
+#### Deployment Details
+- **Platform**: Render.com (Free Tier)
+- **Python Version**: 3.11.7
+- **Web Service**: Gunicorn WSGI server
+- **Workers**: 1 (optimized for 512MB RAM limit)
+- **Dataset**: 84-song curated dataset (smaller dataset for free tier)
+- **Build Time**: ~2-3 minutes
+- **Cold Start**: ~30 seconds on first request after inactivity
+
+#### Why 84 Songs in Production?
+- **Memory Constraints**: Render's free tier provides 512MB RAM
+- **Spotify Million Song Dataset**: 57K songs require ~1-2GB RAM for TF-IDF processing
+- **Production Stability**: 84-song dataset loads instantly and runs smoothly
+- **Local Development**: You can use the full 57K dataset locally on your machine!
+
+#### Deployment Files
+The repository includes these deployment files:
+- `render.yaml` - Render.com configuration
+- `requirements.txt` - Production dependencies
+- `runtime.txt` - Python version specification
+- `.python-version` - Alternative Python version file
+- `Procfile` - Process definition for deployment
+
+#### Deploy Your Own Instance
+
+**Option 1: Render.com (Recommended)**
+1. Fork this repository
+2. Sign up at [Render.com](https://render.com)
+3. Create new Web Service
+4. Connect your GitHub repository
+5. Render auto-detects and deploys!
+
+**Option 2: Other Platforms**
+- **Railway.app**: Better free tier (more RAM)
+- **PythonAnywhere**: Good for Python apps
+- **Heroku**: Popular but requires paid plan
+- **Vercel**: Not recommended (250MB serverless limit)
+
+For detailed deployment instructions, see [DEPLOYMENT_ALTERNATIVES.md](DEPLOYMENT_ALTERNATIVES.md)
+
+#### Environment Variables (Optional)
+Set these on your deployment platform:
+```
+OPENWEATHER_API_KEY=your_api_key_here
+FLASK_ENV=production
+```
+
+## 🐛 Troubleshooting
 Edit `static/js/script.js` in the `getWeatherIcon()` function:
 ```javascript
 const icons = {

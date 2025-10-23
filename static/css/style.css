@@ -190,9 +190,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 section {
@@ -209,6 +206,12 @@ section {
     justify-content: center;
     text-align: center;
     padding-top: 80px;
+}
+
+.hero .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-content {

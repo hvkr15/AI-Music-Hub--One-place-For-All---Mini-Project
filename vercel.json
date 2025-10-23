@@ -1,14 +1,18 @@
 {
-  "builds": [
+  "rewrites": [
     {
-      "src": "index.py",
-      "use": "@vercel/python"
+      "source": "/static/(.*)",
+      "destination": "/static/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/index"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "index.py"
+  "functions": {
+    "api/**/*.py": {
+      "memory": 1024,
+      "maxDuration": 10
     }
-  ]
+  }
 }

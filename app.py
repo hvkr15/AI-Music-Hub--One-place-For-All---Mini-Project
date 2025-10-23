@@ -653,9 +653,12 @@ def not_found(e):
 def server_error(e):
     return render_template('500.html'), 500
 
+# Initialize data when module is loaded (for Vercel)
+load_data()
+
 if __name__ == '__main__':
     print("=" * 60)
-    print("🎵 AI Music Recommendation System with Weather Integration")
+    print("🎵 DYNAMIC TUNE - Music Recommendation System")
     print("=" * 60)
     
     # Load data

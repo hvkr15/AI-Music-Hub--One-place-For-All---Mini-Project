@@ -48,4 +48,12 @@ Thumbs.db
 
 # Database
 *.db
+
+# Large datasets
+data/spotify_million_songs.csv
+data/*.csv
+!data/music_data.csv
+
+# Kaggle cache
+.kaggle/
 *.sqlite3

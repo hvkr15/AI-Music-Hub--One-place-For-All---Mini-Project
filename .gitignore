@@ -49,10 +49,11 @@ Thumbs.db
 # Database
 *.db
 
-# Large datasets
-data/spotify_million_songs.csv
-data/*.csv
+# Large datasets - commented out to allow Spotify dataset for deployment
+# data/spotify_million_songs.csv
+# data/*.csv
 !data/music_data.csv
+!data/spotify_million_songs.csv
 
 # Kaggle cache
 .kaggle/

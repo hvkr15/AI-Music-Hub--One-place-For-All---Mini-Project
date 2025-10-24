@@ -3,6 +3,8 @@ import pandas as pd
 import os
 from recommendation import MusicRecommender
 from spotify_recommender import SpotifyMusicRecommender
+from indian_languages_recommender import IndianLanguagesRecommender
+from indian_languages_weather import IndianLanguagesWeatherRecommender
 from weather_recommendation import WeatherMusicRecommender
 
 app = Flask(__name__)
@@ -17,8 +19,22 @@ def load_data():
     """Load music dataset and initialize recommenders"""
     global music_recommender, weather_recommender, use_spotify_dataset
     try:
-        # Try to load Spotify Million Song Dataset first
-        if os.path.exists('data/spotify_million_songs.csv'):
+        # Priority 1: Try to load Spotify Indian Languages Dataset (Kaggle)
+        if os.path.exists('data/spotify_indian_languages.csv'):
+            print("📊 Loading Spotify Indian Languages Dataset (Kaggle)...")
+            df = pd.read_csv('data/spotify_indian_languages.csv')
+            
+            # Use Indian Languages recommender for this dataset
+            music_recommender = IndianLanguagesRecommender(df)
+            weather_recommender = IndianLanguagesWeatherRecommender(df)
+            use_spotify_dataset = True
+            print("✓ Indian Languages dataset loaded successfully!")
+            print("✓ Indian Languages weather recommender initialized!")
+            
+            return True
+        
+        # Priority 2: Try to load Spotify Million Song Dataset
+        elif os.path.exists('data/spotify_million_songs.csv'):
             print("📊 Loading Spotify Million Song Dataset...")
             df = pd.read_csv('data/spotify_million_songs.csv')
             
@@ -40,7 +56,7 @@ def load_data():
             
             return True
             
-        # Fallback to original dataset
+        # Priority 3: Fallback to original dataset
         elif os.path.exists('data/music_data.csv'):
             print("📊 Loading original music dataset...")
             df = pd.read_csv('data/music_data.csv')

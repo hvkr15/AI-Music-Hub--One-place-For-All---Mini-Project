@@ -164,7 +164,10 @@ def get_songs():
         if not music_recommender or music_recommender.df is None:
             return jsonify({'error': 'System not initialized'}), 500
         
-        songs = music_recommender.df['song'].tolist()
+        # Check which column name to use (song_name for Indian Languages, song for others)
+        song_column = 'song_name' if 'song_name' in music_recommender.df.columns else 'song'
+        
+        songs = music_recommender.df[song_column].tolist()
         return jsonify({
             'success': True,
             'songs': songs
@@ -181,12 +184,15 @@ def search_songs():
         if not music_recommender or music_recommender.df is None:
             return jsonify({'error': 'System not initialized'}), 500
         
+        # Check which column name to use (song_name for Indian Languages, song for others)
+        song_column = 'song_name' if 'song_name' in music_recommender.df.columns else 'song'
+        
         if not query:
-            songs = music_recommender.df['song'].head(50).tolist()
+            songs = music_recommender.df[song_column].head(50).tolist()
         else:
             songs = music_recommender.df[
-                music_recommender.df['song'].str.lower().str.contains(query, na=False)
-            ]['song'].head(50).tolist()
+                music_recommender.df[song_column].str.lower().str.contains(query, na=False)
+            ][song_column].head(50).tolist()
         
         return jsonify({
             'success': True,
